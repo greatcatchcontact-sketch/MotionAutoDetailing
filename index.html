@@ -465,51 +465,78 @@ details,
 
 </style>
 
-<style id="yoshi-hotfix">
-/* --- HOTFIX: center hero content + tagline across breakpoints --- */
-.hero .hero-content, .hero-content, .hero .kicker, .hero .eyebrow {
-  text-align: center !important;
+<style>
+.header{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav{display:flex;align-items:center;gap:16px;}
+.nav .links{display:flex;gap:24px;align-items:center;}
+.menu-btn{display:none;background:transparent;border:1px solid rgba(255,255,255,.18);color:inherit;border-radius:10px;padding:.5rem .6rem;}
+.menu-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(43,103,255,.35);}
+@media (max-width: 900px){
+  .menu-btn{display:inline-flex;}
+  .nav .links{position:fixed;top:var(--hdrH,88px);right:12px;left:12px;display:grid;gap:8px;padding:12px;border-radius:14px;background:rgba(10,23,48,.96);border:1px solid rgba(255,255,255,.12);box-shadow:0 14px 40px rgba(0,0,0,.45);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s ease;z-index:60;}
+  .nav.is-open .links{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .header .cta#quoteBtn{margin-left:auto;}
 }
-.hero .kicker, .hero .eyebrow {
-  display: block !important;
-  width: 100% !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
+</style>
 
-/* --- HOTFIX: ensure hero media video is visible and behind content --- */
-.hero, .hero-section { position: relative !important; isolation: isolate !important; }
-.hero .hero-media, .hero-media {
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: -1 !important;
-  overflow: hidden !important;
-}
-.hero .hero-media video, .hero-media video {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-}
-/* In case an image fallback is used, keep it visible too */
-.hero .hero-media picture, .hero .hero-media img, .hero-media picture, .hero-media img {
-  width: 100% !important; height: 100% !important; object-fit: cover !important;
-}
 
-/* --- HOTFIX: ensure hero has height so video shows and content centers --- */
-:root{ --hdrH: 80px; }
-.hero, .hero-section {
-  min-height: calc(100svh - var(--hdrH)) !important;
-  display: grid !important;
-  place-items: center !important;
+<style>
+@media (min-width: 901px){
+  .nav { margin-left:auto; }
 }
-/* lift marquee slightly if present */
-.brand-marquee, .brands-marquee, .partners-marquee { margin-top: 12px !important; }
+</style>
+
+
+<style>
+@media (max-width: 900px){
+  .nav .links{
+    right:12px; left:auto; width:auto; min-width:200px;
+    justify-items:end; text-align:right;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 900px){
+  .nav .links{
+    left: auto !important;
+    right: 12px !important;
+    width: auto;
+    min-width: 200px;
+    text-align: right;
+    justify-items: end;
+  }
+}
+</style>
+
+
+<style>
+/* Right-side group holds CTA + hamburger */
+.nav-right{display:flex;align-items:center;gap:.5rem;margin-left:auto;}
+/* Desktop: keep hamburger hidden */
+@media (min-width: 901px){
+  .menu-btn{display:none !important;}
+}
+/* Mobile: show hamburger; dropdown anchored to the right near CTA */
+@media (max-width: 900px){
+  .menu-btn{display:inline-flex;}
+  .nav .links{
+    position:fixed;
+    top:var(--hdrH,88px);
+    right:12px;
+    left:auto;
+    width:auto;
+    min-width:220px;
+    text-align:right;
+    justify-items:end;
+  }
+}
 </style>
 
 
 <style id="yoshi-h1-only">
-/* Center only the main hero H1, do not affect any other elements */
+/* Center only the main hero H1 */
 h1.headline {
   text-align: center !important;
   display: block !important;
@@ -716,13 +743,32 @@ h1.headline {
   fill-opacity: 0 !important;
 }
 </style></svg></a>
+
 <nav aria-label="primary" class="nav">
-<a href="#packages">Packages</a>
-<a href="#gallery">Gallery</a>
-<a href="#reviews">Reviews</a>
-<a href="#faq">FAQ</a>
-<a class="cta" href="#book">Book Now</a>
+  <!-- Hamburger (hidden on desktop) -->
+<!-- Collapsible links -->
+  <div class="links" id="navLinks" role="menu">
+    <a role="menuitem" href="#packages">Packages</a>
+    <a role="menuitem" href="#gallery">Gallery</a>
+    <a role="menuitem" href="#reviews">Reviews</a>
+    <a role="menuitem" href="#faq">FAQ</a>
+  </div>
 </nav>
+
+<!-- Keep “Book Now” OUTSIDE the collapsible menu -->
+
+<div class="nav-right">
+  <a class="cta" href="#book" id="quoteBtn">Book Now</a>
+  <button class="menu-btn" id="menuBtn"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="navLinks">
+    <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true">
+      <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
 </header>
 <!-- Hero -->
 <main class="hero" id="top">
@@ -1367,16 +1413,34 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
 })();
 </script>
 
-<script id="yoshi-hotfix-js">
+<script>
 (function(){
-  const header = document.querySelector('header, .header');
-  function setHdr(){
-    if(!header) return;
-    document.documentElement.style.setProperty('--hdrH', header.getBoundingClientRect().height + 'px');
-  }
-  setHdr();
-  window.addEventListener('resize', setHdr);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setHdr);
+  const nav = document.querySelector('.nav');
+  const btn = document.getElementById('menuBtn');
+  const drawer = document.getElementById('navLinks');
+  if(!nav || !btn || !drawer) return;
+  const mq = window.matchMedia('(max-width: 900px)');
+  function closeMenu(){nav.classList.remove('is-open');btn.setAttribute('aria-expanded','false');}
+  btn.addEventListener('click', ()=>{const open=nav.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(open));},{passive:true});
+  drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click', closeMenu,{passive:true});});
+  document.addEventListener('keydown', (e)=>{if(e.key==='Escape') closeMenu();});
+  mq.addEventListener?.('change',(e)=>{if(!e.matches) closeMenu();});
+})();
+</script>
+
+
+<script>
+(function(){
+  const nav = document.querySelector('.nav');
+  const btn = document.getElementById('menuBtn');
+  const drawer = document.getElementById('navLinks');
+  if(!nav || !btn || !drawer) return;
+  const mq = window.matchMedia('(max-width: 900px)');
+  function closeMenu(){nav.classList.remove('is-open');btn.setAttribute('aria-expanded','false');}
+  btn.addEventListener('click', ()=>{const open=nav.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(open));},{passive:true});
+  drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click', closeMenu,{passive:true});});
+  document.addEventListener('keydown', (e)=>{if(e.key==='Escape') closeMenu();});
+  mq.addEventListener?.('change',(e)=>{if(!e.matches) closeMenu();});
 })();
 </script>
 
