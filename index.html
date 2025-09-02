@@ -963,7 +963,26 @@ section:not(.hero) li{
 #reviews .quote{ grid-area: quote; color:#fff; line-height:1.5; font-size:.92rem; opacity:.95; }
 #reviews .meta{ grid-area: name; margin-left:auto; font-size:.75rem; color:rgba(255,255,255,.7); font-weight:700; }
 #reviews .ribbon:hover .belt{ animation-play-state: paused; }
-</style></head>
+</style>
+
+
+
+
+<style id="yoshi-booknow-flash">
+/* Flash effect every 2s on the header Book Now button */
+header.header .nav-right .cta#quoteBtn{
+  position: relative;
+  animation: yoshi_flash 2s ease-in-out infinite;
+}
+@keyframes yoshi_flash{
+  0%   { background:#2b67ff; box-shadow:0 8px 28px rgba(43,103,255,.35); }
+  45%  { background:#4a82ff; box-shadow:0 0 32px rgba(43,103,255,.75); }
+  55%  { background:#4a82ff; box-shadow:0 0 32px rgba(43,103,255,.75); }
+  100% { background:#2b67ff; box-shadow:0 8px 28px rgba(43,103,255,.35); }
+}
+</style>
+
+</head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
 <div class="track"><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>Meguiar’s®</span><span>Chemical Guys®</span><span>Adam’s Polishes®</span><span>P&amp;S®</span><span>RUPES®</span><span>FLEX®</span><span>Menzerna®</span><span>Turtle Wax Pro®</span><span>Optimum Polymer®</span><span>Jescar®</span><span>Griot’s Garage®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span></div>
 </div>
@@ -1017,7 +1036,7 @@ section:not(.hero) li{
 <!-- Get a Quote with sheen + sparkles -->
 <a class="btn btn-ghost" href="#book" id="quoteBtn">
           Get a Quote
-          <span aria-hidden="true" class="sparkles"></span>
+          
 </a>
 </div>
 <!-- === Brand Marquee (full-bleed, auto-scrolling at bottom of hero) === -->
@@ -1636,31 +1655,7 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
         stars.push(s);
       }
 
-      function runSweep(){
-        // restart the sheen animation
-        quoteBtn.classList.remove('run');
-        void quoteBtn.offsetWidth; // reflow
-        quoteBtn.classList.add('run');
-
-        const rect = quoteBtn.getBoundingClientRect();
-        const w = rect.width;
-        const h = rect.height;
-
-        stars.forEach((s,i)=>{
-          // near the right 30% of the button
-          const x = (w * (0.68 + Math.random()*0.25)) - 5;
-          const y = (h * (0.25 + Math.random()*0.5)) - 5;
-          s.style.left = x + 'px';
-          s.style.top  = y + 'px';
-          const dx = (Math.random() * 6 - 3) + 'px';
-          const dy = (Math.random() * 6 - 3) + 'px';
-          s.style.setProperty('--sx', dx);
-          s.style.setProperty('--sy', dy);
-          s.style.animationDelay = (i * 70) + 'ms';
-          s.classList.remove('twinkle');
-          void s.offsetWidth; // reflow
-          s.classList.add('twinkle');
-          s.addEventListener('animationend', () => s.classList.remove('twinkle'), { once:true });
+      function runSweep(){/* disabled by Yoshida */});
         });
       }
 
