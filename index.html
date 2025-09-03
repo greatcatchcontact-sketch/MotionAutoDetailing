@@ -982,6 +982,72 @@ header.header .nav-right .cta#quoteBtn{
 }
 </style>
 
+
+<style id="yoshi-premium-left-nav">
+/* === Premium Left-Side Menu (elegant sheet) === */
+.nav{ position:relative !important; }
+.nav .links{
+  position: fixed !important;
+  top: var(--hdrH, 88px) !important;
+  left: 12px !important;
+  right: auto !important;
+  width: 280px !important;
+  max-width: calc(100vw - 24px) !important;
+  display: grid !important;
+  grid-auto-rows: minmax(40px, auto) !important;
+  gap: 6px !important;
+  padding: 14px !important;
+  text-align: left !important;
+  justify-items: start !important;
+  background:
+    radial-gradient(900px 480px at 0% 0%, rgba(255,255,255,.08), transparent 60%),
+    linear-gradient(180deg, #0a1730 0%, #0e2347 100%) !important;
+  border: 1px solid rgba(212,175,55,.35) !important; /* gold hairline */
+  border-radius: 16px !important;
+  box-shadow: 0 22px 60px rgba(0,0,0,.55), 0 0 20px rgba(43,103,255,.18) !important;
+  transform: translateX(-12px) scale(.98) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: 5000 !important;
+  transition: transform .28s cubic-bezier(.2,.8,.3,1), opacity .28s ease;
+}
+.nav.is-open .links{
+  transform: translateX(0) scale(1) !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Items */
+.nav .links a{
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  padding: 10px 12px !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  letter-spacing: .02em !important;
+  color: #f6f8fc !important;
+  text-decoration: none !important;
+  border-radius: 10px !important;
+  transition: background-color .2s ease, transform .2s ease, color .2s ease !important;
+}
+.nav .links a .ico{
+  width: 18px; height: 18px; flex: 0 0 18px; opacity: .88;
+}
+.nav .links a:hover{
+  background: rgba(255,255,255,.06) !important;
+  color: #3b82f6 !important;
+  transform: translateX(2px);
+}
+
+/* Respect desktop spacing */
+@media (min-width: 901px){
+  .nav .links{ top: calc(var(--hdrH, 88px) + 8px) !important; }
+}
+
+/* Keep Book Now on the right; this sheet only affects the links block */
+</style>
 </head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
 <div class="track"><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>Meguiar’s®</span><span>Chemical Guys®</span><span>Adam’s Polishes®</span><span>P&amp;S®</span><span>RUPES®</span><span>FLEX®</span><span>Menzerna®</span><span>Turtle Wax Pro®</span><span>Optimum Polymer®</span><span>Jescar®</span><span>Griot’s Garage®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span></div>
@@ -996,10 +1062,38 @@ header.header .nav-right .cta#quoteBtn{
 <!-- Hamburger (hidden on desktop) -->
 <!-- Collapsible links -->
 <div class="links" id="navLinks" role="menu">
-<a href="#packages" role="menuitem">Packages</a>
-<a href="#gallery" role="menuitem">Gallery</a>
-<a href="#reviews" role="menuitem">Reviews</a>
-<a href="#faq" role="menuitem">FAQ</a>
+  <!-- Premium left-side menu with icons -->
+  <a href="#packages" role="menuitem" aria-label="Packages">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1.6"></rect>
+      <rect x="14" y="3" width="7" height="7" rx="1.6"></rect>
+      <rect x="3" y="14" width="7" height="7" rx="1.6"></rect>
+      <rect x="14" y="14" width="7" height="7" rx="1.6"></rect>
+    </svg>
+    <span>Packages</span>
+  </a>
+  <a href="#gallery" role="menuitem" aria-label="Gallery">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+      <path d="M8 13l3-3 5 6"></path>
+      <circle cx="9" cy="9" r="1.5"></circle>
+    </svg>
+    <span>Gallery</span>
+  </a>
+  <a href="#reviews" role="menuitem" aria-label="Reviews">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 17.5l-5.2 3 1-5.9-4.2-4.1 5.9-.9L12 4l2.6 5.6 5.9.9-4.2 4.1 1 5.9z"></path>
+    </svg>
+    <span>Reviews</span>
+  </a>
+  <a href="#faq" role="menuitem" aria-label="FAQ">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M9.5 10a2.5 2.5 0 015 0c0 1.7-2.5 2.2-2.5 3.8"></path>
+      <circle cx="12" cy="17.2" r="1"></circle>
+    </svg>
+    <span>FAQ</span>
+  </a>
 </div>
 </nav>
 <!-- Keep “Book Now” OUTSIDE the collapsible menu -->
@@ -1015,9 +1109,9 @@ header.header .nav-right .cta#quoteBtn{
 </video>
 <div aria-hidden="true" class="hero-inner&gt; &lt;!-- Updated: bouncing logo now references logo.jpg --&gt; &lt;div class=" logo-bounce"="">
 </div>
-<div class="kicker">Mobile &amp; In-Shop • Paint Correction • Ceramic Coating</div>
-<h1 class="headline fade-top">Detailing That Moves You</h1>
-<div class="subline fade-bottom">Showroom shine. Daily-driver practicality.</div>
+<div class="kicker">Full Auto Detailing • Paint Correction • Ceramic Coating</div>
+<h1 class="headline fade-top"><span style="font-size:0.9em;">Shine <span style="color:#3b82f6;font-weight:inherit">Restored</span> & Protection <span style="color:#3b82f6;font-weight:inherit">Perfected</span></span></h1>
+<div class="subline fade-bottom"></div>
 <div class="hero-ctas">
 <!-- View Packages button wrapped for snake outline -->
 <span class="btn-wrap">
