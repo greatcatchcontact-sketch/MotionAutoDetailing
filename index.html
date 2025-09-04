@@ -1048,6 +1048,843 @@ header.header .nav-right .cta#quoteBtn{
 
 /* Keep Book Now on the right; this sheet only affects the links block */
 </style>
+
+<style id="yoshi-gap-fix">
+/* === Remove marquee-induced header gap === */
+:root{ --marqueeH: 0px !important; }
+header.header{ top: 0 !important; }
+/* Take the marquee out of normal flow so it doesn't reserve vertical space */
+#yoshi-hero-marquee{
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none; /* keep header buttons clickable */
+}
+/* Ensure body/header don't add extra padding or margins at the top */
+body{ margin-top: 0 !important; padding-top: 0 !important; }
+</style>
+<script>
+// Optional: hide the marquee once the user starts scrolling to keep the header flush
+window.addEventListener('scroll', function(){
+  var mq = document.getElementById('yoshi-hero-marquee');
+  if(!mq) return;
+  if(window.scrollY > 10){
+    mq.style.display = 'none';
+  }else{
+    mq.style.display = 'block';
+  }
+});
+</script>
+
+<style id="yoshi-marquee-bottom-hero">
+/* === Keep header flush AND show marquee clearly at bottom of the hero === */
+header.header{ top: 0 !important; }
+
+/* Anchor marquee inside the hero, bottom-aligned, above hero media */
+.hero{ position: relative !important; padding-bottom: 108px !important; } /* reserve space for bar */
+#yoshi-hero-marquee{
+  position: absolute !important;
+  top: auto !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 10 !important;               /* above video & hero background */
+  pointer-events: none !important;      /* don't block hero CTAs */
+}
+
+/* If any previous overrides tried to make it a top bar, neutralize them */
+:root{ --marqueeH: 0px !important; }
+</style>
+<script>
+// Ensure marquee stays visible (undo prior scroll-hide logic if present)
+(function(){
+  var mq = document.getElementById('yoshi-hero-marquee');
+  if(!mq) return;
+  // If earlier script hid it on scroll, force it to remain displayed
+  window.addEventListener('scroll', function(){
+    mq.style.display = 'block';
+  });
+})();
+</script>
+
+<style id="yoshi-premium-left-nav-thinner">
+/* === Thinner Premium Left-Side Menu === */
+.nav .links{
+  width: 220px !important;
+  padding: 8px 10px !important;
+  grid-auto-rows: minmax(32px, auto) !important;
+}
+.nav .links a{
+  padding: 6px 8px !important;
+  font-size: 13.5px !important;
+  gap: 6px !important;
+  border-radius: 6px !important;
+}
+.nav .links a .ico{
+  width: 16px !important;
+  height: 16px !important;
+}
+</style>
+
+<style id="yoshi-premium-left-nav-thinlong">
+/* === Extra Thin & Longer Premium Left-Side Menu === */
+.nav .links{
+  width: 180px !important;            /* narrower panel */
+  padding: 6px 8px !important;        /* minimal padding */
+  grid-auto-rows: minmax(28px, auto) !important;
+  height: auto !important;
+  max-height: 90vh !important;        /* allow it to be longer */
+  overflow-y: auto !important;        /* scroll if too tall */
+}
+.nav .links a{
+  padding: 5px 6px !important;
+  font-size: 12.5px !important;
+  gap: 4px !important;
+  border-radius: 4px !important;
+}
+.nav .links a .ico{
+  width: 14px !important;
+  height: 14px !important;
+}
+</style>
+
+<style id="yoshi-premium-left-nav-thinlong-readable">
+/* === Thin & Long Menu with Readable Font === */
+.nav .links{
+  width: 190px !important;           
+  padding: 8px 10px !important;
+  grid-auto-rows: minmax(36px, auto) !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+}
+.nav .links a{
+  padding: 8px 10px !important;
+  font-size: 14px !important;        
+  gap: 6px !important;
+  border-radius: 6px !important;
+}
+.nav .links a .ico{
+  width: 16px !important;
+  height: 16px !important;
+}
+</style>
+
+<style id="yoshi-gallery-mosaic">
+/* === Premium Mosaic Gallery (no changes to package cards) === */
+section#gallery .wrap{ width:min(1180px, 94%); margin:0 auto; }
+section#gallery .lead{ color: rgba(255,255,255,.85) !important; }
+
+/* Masonry-like responsive grid using aspect-ratio patterns */
+.gallery{
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 8px !important;
+  align-items: stretch !important;
+}
+.gallery img{
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease !important;
+  /* default tile ratio */
+  aspect-ratio: 4 / 3 !important;
+}
+
+/* Mix of square and tall tiles for a gallery feel */
+.gallery img:nth-child(6n+1){ aspect-ratio: 1 / 1 !important; }     /* square */
+.gallery img:nth-child(6n+3){ aspect-ratio: 3 / 4 !important; }     /* vertical */
+.gallery img:nth-child(6n+5){ aspect-ratio: 16 / 9 !important; }    /* wide */
+
+/* Subtle hover pop */
+.gallery img:hover{
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 36px rgba(0,0,0,.35);
+  filter: saturate(1.08) contrast(1.02);
+}
+
+/* Add a faint gradient frame around the whole gallery area */
+section#gallery{
+  position: relative;
+}
+section#gallery::before{
+  content:"";
+  position:absolute; inset:-6px -6px auto -6px; height: 8px;
+  background: linear-gradient(90deg, rgba(43,103,255,.35), rgba(212,175,55,.25), rgba(43,103,255,.35));
+  border-radius: 999px;
+  filter: blur(12px);
+  opacity:.35;
+}
+
+/* Keep existing card animations and formats untouched */
+</style>
+
+<style id="yoshi-gallery-3col-captions">
+/* === Gallery: 3 images per row with captions === */
+#gallery .wrap{ width:min(1180px,94%); margin:0 auto; }
+#gallery .gallery{
+  display:grid !important;
+  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+@media (max-width: 980px){
+  #gallery .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+}
+@media (max-width: 560px){
+  #gallery .gallery{ grid-template-columns: 1fr !important; }
+}
+#gallery .g-item{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+#gallery .g-item img{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio: 4 / 3 !important;
+  object-fit: cover !important;
+  border-radius:12px !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#gallery .g-item img:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0,0,0,.35);
+}
+#gallery .g-item figcaption{
+  font-size:13px;
+  line-height:1.4;
+  color: rgba(255,255,255,.85);
+}
+</style>
+
+<style id="yoshi-section-titles-white">
+/* === Force all section titles to white for visibility === */
+section h2, section h3, section .lead-title, section .title {
+  color: #ffffff !important;
+}
+</style>
+
+<style id="yoshi-packages-horizontal-scroll">
+/* === Make Packages a horizontal scroll list (keep card layout/format) === */
+#packages .wrap{ width:min(1180px,94%); margin:0 auto; }
+#packages .grid-3{
+  display: flex !important;
+  gap: 14px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding-bottom: 10px !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+#packages .grid-3 > .card{
+  flex: 0 0 340px !important;   /* preserve existing card size */
+  scroll-snap-align: start !important;
+}
+/* Optional: subtle fade edges to hint scroll */
+#packages .wrap{
+  position: relative;
+}
+#packages .wrap::before,
+#packages .wrap::after{
+  content:"";
+  position:absolute; top: 86px; bottom: 18px; width: 36px;
+  pointer-events:none;
+}
+#packages .wrap::before{
+  left: 0;
+  background: linear-gradient(90deg, rgba(10,23,48,1), rgba(10,23,48,0));
+}
+#packages .wrap::after{
+  right: 0;
+  background: linear-gradient(270deg, rgba(10,23,48,1), rgba(10,23,48,0));
+}
+/* Minimal scrollbar styling */
+#packages .grid-3::-webkit-scrollbar{ height:8px; }
+#packages .grid-3::-webkit-scrollbar-track{ background: rgba(255,255,255,.06); border-radius: 999px; }
+#packages .grid-3::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.25); border-radius: 999px; }
+</style>
+
+<style id="yoshi-packages-scroll-arrows">
+/* === Arrow controls for Packages horizontal scroller === */
+#packages .wrap{
+  position: relative;
+}
+#packages .pkg-nav{
+  position: absolute;
+  top: 120px;                      /* roughly aligns with the card row */
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;            /* let clicks pass except on buttons */
+  padding: 0 2px;
+}
+#packages .pkg-btn{
+  pointer-events: auto;
+  display: inline-grid;
+  place-items: center;
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(10,23,48,.65);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .15s ease, background-color .2s ease, opacity .2s ease;
+}
+#packages .pkg-btn:hover{ transform: translateY(-1px); background: rgba(10,23,48,.85); }
+#packages .pkg-btn:disabled{
+  opacity: .35; cursor: not-allowed; filter: grayscale(1);
+}
+#packages .pkg-btn svg{ width: 18px; height: 18px; display:block; }
+
+/* Positioning tweaks on small screens (hide arrows on narrow view where swipe is enough) */
+@media (max-width: 720px){
+  #packages .pkg-nav{ display:none; }
+}
+</style>
+
+<script id="yoshi-packages-scroll-arrows-js">
+(function(){
+  const wrap = document.querySelector('#packages .wrap');
+  const rail = document.querySelector('#packages .grid-3');
+  if(!wrap || !rail) return;
+
+  // Inject nav container & buttons
+  const nav = document.createElement('div');
+  nav.className = 'pkg-nav';
+  nav.innerHTML = `
+    <button class="pkg-btn" id="pkgPrev" aria-label="Scroll packages left" title="Scroll left">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="pkg-btn" id="pkgNext" aria-label="Scroll packages right" title="Scroll right">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  `;
+  wrap.appendChild(nav);
+
+  const prev = nav.querySelector('#pkgPrev');
+  const next = nav.querySelector('#pkgNext');
+
+  function stepSize(){
+    const card = rail.querySelector('.card');
+    if(!card) return 360;
+    const rect = card.getBoundingClientRect();
+    return Math.ceil(rect.width + 14); // include gap (~14px from CSS)
+  }
+
+  function updateDisabled(){
+    // Allow a smidge of tolerance
+    const tol = 2;
+    prev.disabled = rail.scrollLeft <= tol;
+    const max = rail.scrollWidth - rail.clientWidth - tol;
+    next.disabled = rail.scrollLeft >= max;
+  }
+
+  function scrollByDir(dir){
+    rail.scrollBy({ left: dir * stepSize(), behavior: 'smooth' });
+    // After animation, update states (also listen to 'scroll')
+    setTimeout(updateDisabled, 350);
+  }
+
+  prev.addEventListener('click', () => scrollByDir(-1));
+  next.addEventListener('click', () => scrollByDir(1));
+
+  // Keyboard support when rail focused
+  rail.setAttribute('tabindex', '0');
+  rail.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollByDir(-1); }
+    if(e.key === 'ArrowRight'){ e.preventDefault(); scrollByDir(1); }
+  });
+
+  // Update button states on scroll/resize
+  rail.addEventListener('scroll', updateDisabled, { passive: true });
+  window.addEventListener('resize', updateDisabled);
+
+  // Initialize
+  updateDisabled();
+})();
+</script>
+
+<style id="yoshi-section-headers-white">
+/* === Force all section header blocks and their children to white === */
+section header,
+section header * {
+  color: #ffffff !important;
+}
+</style>
+
+<style id="yoshi-force-titles-white">
+/* === Force section titles to white === */
+#packages h2,
+#gallery h2,
+#reviews h2,
+#contact h2,
+section h2,
+section h3,
+section .title,
+section .lead-title {
+  color: #ffffff !important;
+}
+</style>
+
+<style id="yoshi-packages-scroll-arrows-blue">
+/* === Blue arrow buttons pinned to left/right edges of the Packages section === */
+#packages .wrap{ position: relative !important; }
+
+#packages .pkg-nav{
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  pointer-events: none !important; /* allow clicks thru except on buttons */
+  padding: 0 0 !important;
+  z-index: 5 !important;
+}
+
+/* Buttons */
+#packages .pkg-btn{
+  pointer-events: auto !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  width: 42px !important; height: 42px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(43,103,255,.65) !important;
+  background: #2b67ff !important; /* brand blue */
+  color: #fff !important;
+  box-shadow: 0 10px 28px rgba(43,103,255,.45), 0 0 0 3px rgba(43,103,255,.15) !important;
+  cursor: pointer !important;
+  transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease !important;
+}
+#packages .pkg-btn:hover{
+  transform: translateY(-1px) !important;
+  box-shadow: 0 12px 32px rgba(43,103,255,.55), 0 0 0 4px rgba(43,103,255,.18) !important;
+}
+#packages .pkg-btn:disabled{
+  opacity: .35 !important; cursor: not-allowed !important; filter: grayscale(1) !important;
+}
+#packages .pkg-btn svg{ width: 18px !important; height: 18px !important; display:block !important; }
+
+/* Place buttons slightly outside the content so they hug the edges */
+#packages .pkg-btn#pkgPrev{ margin-left: -12px !important; }
+#packages .pkg-btn#pkgNext{ margin-right: -12px !important; }
+
+/* Hide arrows on small screens (swipe UX) */
+@media (max-width: 720px){
+  #packages .pkg-nav{ display:none !important; }
+}
+</style>
+
+<style id="yoshi-packages-scroll-arrows-fix">
+#packages .wrap{ position: relative !important; }
+/* Nav layer above everything */
+#packages .pkg-nav{
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important; right: 0 !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  pointer-events: none !important;
+  z-index: 1000 !important; /* ensure on top */
+}
+#packages .pkg-btn{
+  pointer-events: auto !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  width: 44px !important; height: 44px !important;
+  border-radius: 999px !important;
+  border: 2px solid #ffffff !important;
+  background: #2b67ff !important; /* brand blue */
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35), 0 0 0 4px rgba(43,103,255,.18) !important;
+  cursor: pointer !important;
+  transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease !important;
+}
+#packages .pkg-btn:hover{ transform: translateY(-1px) !important; }
+#packages .pkg-btn svg{ width: 20px !important; height: 20px !important; display:block !important; }
+/* Nudge buttons slightly outside content area so they don't cover cards */
+#packages .pkg-btn#pkgPrev{ margin-left: -14px !important; }
+#packages .pkg-btn#pkgNext{ margin-right: -14px !important; }
+/* ALWAYS visible on all screens */
+</style>
+
+<script id="yoshi-packages-arrows-ensure">
+(function(){
+  function ready(fn){ 
+    if(document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+  ready(function(){
+    var wrap = document.querySelector('#packages .wrap');
+    var rail = document.querySelector('#packages .grid-3');
+    if(!wrap || !rail) return;
+
+    // If nav already exists, remove and recreate to avoid stale styles
+    var old = wrap.querySelector('.pkg-nav');
+    if(old) old.remove();
+
+    var nav = document.createElement('div');
+    nav.className = 'pkg-nav';
+    nav.innerHTML = '\
+      <button class="pkg-btn" id="pkgPrev" aria-label="Scroll packages left" title="Scroll left">\
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"\
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">\
+          <polyline points="15 18 9 12 15 6"></polyline>\
+        </svg>\
+      </button>\
+      <button class="pkg-btn" id="pkgNext" aria-label="Scroll packages right" title="Scroll right">\
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"\
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">\
+          <polyline points="9 18 15 12 9 6"></polyline>\
+        </svg>\
+      </button>';
+    wrap.appendChild(nav);
+
+    var prev = nav.querySelector('#pkgPrev');
+    var next = nav.querySelector('#pkgNext');
+
+    function stepSize(){
+      var card = rail.querySelector('.card');
+      if(!card) return 360;
+      var rect = card.getBoundingClientRect();
+      return Math.ceil(rect.width + 14);
+    }
+    function updateDisabled(){
+      var tol = 2;
+      prev.disabled = rail.scrollLeft <= tol;
+      var max = rail.scrollWidth - rail.clientWidth - tol;
+      next.disabled = rail.scrollLeft >= max;
+    }
+    function scrollByDir(dir){
+      rail.scrollBy({ left: dir * stepSize(), behavior: 'smooth' });
+      setTimeout(updateDisabled, 350);
+    }
+    prev.addEventListener('click', function(){ scrollByDir(-1); });
+    next.addEventListener('click', function(){ scrollByDir(1); });
+    rail.setAttribute('tabindex', '0');
+    rail.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollByDir(-1); }
+      if(e.key === 'ArrowRight'){ e.preventDefault(); scrollByDir(1); }
+    });
+    rail.addEventListener('scroll', updateDisabled, { passive:true });
+    window.addEventListener('resize', updateDisabled);
+    updateDisabled();
+  });
+})();
+</script>
+
+<style id="yoshi-packages-arrows-outside">
+#packages .pkg-btn#pkgPrev { 
+  margin-left: -40px !important;  /* push farther left */
+}
+#packages .pkg-btn#pkgNext { 
+  margin-right: -40px !important; /* push farther right */
+}
+</style>
+
+<style id="yoshi-packages-arrows-outside-more">
+#packages .pkg-btn#pkgPrev { 
+  margin-left: -60px !important;  /* push farther left */
+}
+#packages .pkg-btn#pkgNext { 
+  margin-right: -60px !important; /* push farther right */
+}
+</style>
+
+<style id="yoshi-beforeafter-horizontal-scroll">
+/* === Before & After section: horizontal scroller like Packages === */
+#gallery .wrap{ width:min(1180px,94%); margin:0 auto; position:relative; }
+#gallery .gallery{
+  display: flex !important;
+  gap: 14px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding-bottom: 10px !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+#gallery .gallery > .g-item,
+#gallery .gallery > figure{
+  flex: 0 0 300px !important;      /* card width similar to packages */
+  scroll-snap-align: start !important;
+}
+
+/* Optional fade edges */
+#gallery .wrap::before,
+#gallery .wrap::after{
+  content:"";
+  position:absolute; top: 86px; bottom: 18px; width: 36px;
+  pointer-events:none;
+}
+#gallery .wrap::before{
+  left: 0;
+  background: linear-gradient(90deg, rgba(10,23,48,1), rgba(10,23,48,0));
+}
+#gallery .wrap::after{
+  right: 0;
+  background: linear-gradient(270deg, rgba(10,23,48,1), rgba(10,23,48,0));
+}
+
+/* Minimal scrollbar styling */
+#gallery .gallery::-webkit-scrollbar{ height:8px; }
+#gallery .gallery::-webkit-scrollbar-track{ background: rgba(255,255,255,.06); border-radius: 999px; }
+#gallery .gallery::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.25); border-radius: 999px; }
+</style>
+
+<style id="yoshi-beforeafter-arrows">
+#gallery .wrap{ position: relative !important; }
+/* Nav layer */
+#gallery .ba-nav{
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important; right: 0 !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  pointer-events: none !important;
+  z-index: 1000 !important;
+}
+#gallery .ba-btn{
+  pointer-events: auto !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  width: 44px !important; height: 44px !important;
+  border-radius: 999px !important;
+  border: 2px solid #ffffff !important;
+  background: #2b67ff !important;
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35), 0 0 0 4px rgba(43,103,255,.18) !important;
+  cursor: pointer !important;
+  transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease !important;
+}
+#gallery .ba-btn:hover{ transform: translateY(-1px) !important; }
+#gallery .ba-btn svg{ width: 20px !important; height: 20px !important; display:block !important; }
+/* Push a little outside (like Packages, –60px) */
+#gallery .ba-btn#baPrev{ margin-left: -60px !important; }
+#gallery .ba-btn#baNext{ margin-right: -60px !important; }
+</style>
+
+<script id="yoshi-beforeafter-arrows-js">
+(function(){
+  function ready(fn){ 
+    if(document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+  ready(function(){
+    var wrap = document.querySelector('#gallery .wrap');
+    var rail = document.querySelector('#gallery .gallery');
+    if(!wrap || !rail) return;
+
+    // Remove old nav if any, then inject
+    var old = wrap.querySelector('.ba-nav');
+    if(old) old.remove();
+
+    var nav = document.createElement('div');
+    nav.className = 'ba-nav';
+    nav.innerHTML = '\
+      <button class="ba-btn" id="baPrev" aria-label="Scroll gallery left" title="Scroll left">\
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"\
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">\
+          <polyline points="15 18 9 12 15 6"></polyline>\
+        </svg>\
+      </button>\
+      <button class="ba-btn" id="baNext" aria-label="Scroll gallery right" title="Scroll right">\
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"\
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">\
+          <polyline points="9 18 15 12 9 6"></polyline>\
+        </svg>\
+      </button>';
+    wrap.appendChild(nav);
+
+    var prev = nav.querySelector('#baPrev');
+    var next = nav.querySelector('#baNext');
+
+    function stepSize(){
+      var card = rail.querySelector('.g-item, figure');
+      if(!card) return 320;
+      var rect = card.getBoundingClientRect();
+      return Math.ceil(rect.width + 14);
+    }
+    function updateDisabled(){
+      var tol = 2;
+      prev.disabled = rail.scrollLeft <= tol;
+      var max = rail.scrollWidth - rail.clientWidth - tol;
+      next.disabled = rail.scrollLeft >= max;
+    }
+    function scrollByDir(dir){
+      rail.scrollBy({ left: dir * stepSize(), behavior: 'smooth' });
+      setTimeout(updateDisabled, 350);
+    }
+    prev.addEventListener('click', function(){ scrollByDir(-1); });
+    next.addEventListener('click', function(){ scrollByDir(1); });
+    rail.setAttribute('tabindex', '0');
+    rail.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollByDir(-1); }
+      if(e.key === 'ArrowRight'){ e.preventDefault(); scrollByDir(1); }
+    });
+    rail.addEventListener('scroll', updateDisabled, { passive:true });
+    window.addEventListener('resize', updateDisabled);
+    updateDisabled();
+  });
+})();
+</script>
+
+<style id="yoshi-beforeafter-strip-fix">
+/* === Before & After: horizontal strip using existing .ba-grid / .ba-slider === */
+#gallery .wrap{ width:min(1180px,94%); margin:0 auto; position:relative; }
+#baGrid{
+  display: flex !important;
+  gap: 14px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 10px 2px 16px !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+#baGrid > .ba-slider{
+  flex: 0 0 380px !important;       /* card width */
+  max-width: 90vw !important;
+  scroll-snap-align: start !important;
+}
+/* Maintain your slider internals intact */
+#baGrid .ba-slider .ba-handle{ /* keep existing styles; no changes here */ }
+#baGrid .ba-slider img{ max-width: 100% !important; height: auto !important; border-radius: 12px !important; }
+
+/* Fade edges to hint scroll */
+#gallery .wrap::before,
+#gallery .wrap::after{
+  content:"";
+  position:absolute; top: 110px; bottom: 24px; width: 36px;
+  pointer-events:none;
+}
+#gallery .wrap::before{ left: 0; background: linear-gradient(90deg, rgba(10,23,48,1), rgba(10,23,48,0)); }
+#gallery .wrap::after{ right: 0; background: linear-gradient(270deg, rgba(10,23,48,1), rgba(10,23,48,0)); }
+
+/* Blue arrows outside, matching Packages */
+#gallery .ba-nav{
+  position: absolute !important;
+  top: 50% !important; left: 0 !important; right: 0 !important;
+  transform: translateY(-50%) !important;
+  display: flex !important; justify-content: space-between !important; align-items: center !important;
+  pointer-events: none !important; z-index: 1000 !important;
+}
+#gallery .ba-btn{
+  pointer-events: auto !important;
+  display: inline-grid !important; place-items: center !important;
+  width: 44px !important; height: 44px !important; border-radius: 999px !important;
+  border: 2px solid #ffffff !important;
+  background: #2b67ff !important; color:#fff !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35), 0 0 0 4px rgba(43,103,255,.18) !important;
+  cursor: pointer !important; transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease !important;
+}
+#gallery .ba-btn:hover{ transform: translateY(-1px) !important; }
+#gallery .ba-btn svg{ width: 20px !important; height: 20px !important; display:block !important; }
+#gallery .ba-btn#baPrev{ margin-left: -60px !important; }
+#gallery .ba-btn#baNext{ margin-right: -60px !important; }
+</style>
+
+<script id="yoshi-beforeafter-strip-fix-js">
+(function(){
+  function ready(fn){ if(document.readyState!=='loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
+  ready(function(){
+    var wrap = document.querySelector('#gallery .wrap');
+    var rail = document.querySelector('#baGrid');
+    if(!wrap || !rail) return;
+
+    // Insert nav buttons (recreate if exist)
+    var old = wrap.querySelector('.ba-nav'); if(old) old.remove();
+    var nav = document.createElement('div');
+    nav.className = 'ba-nav';
+    nav.innerHTML = '\
+      <button class="ba-btn" id="baPrev" aria-label="Scroll gallery left" title="Scroll left">\
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>\
+      </button>\
+      <button class="ba-btn" id="baNext" aria-label="Scroll gallery right" title="Scroll right">\
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>\
+      </button>';
+    wrap.appendChild(nav);
+    var prev = nav.querySelector('#baPrev');
+    var next = nav.querySelector('#baNext');
+
+    function stepSize(){
+      var card = rail.querySelector('.ba-slider');
+      if(!card) return 360;
+      var rect = card.getBoundingClientRect();
+      return Math.ceil(rect.width + 14);
+    }
+    function updateDisabled(){
+      var tol=2;
+      prev.disabled = rail.scrollLeft <= tol;
+      var max = rail.scrollWidth - rail.clientWidth - tol;
+      next.disabled = rail.scrollLeft >= max;
+    }
+    function scrollByDir(dir){
+      rail.scrollBy({ left: dir * stepSize(), behavior: 'smooth' });
+      setTimeout(updateDisabled, 350);
+    }
+    prev.addEventListener('click', function(){ scrollByDir(-1); });
+    next.addEventListener('click', function(){ scrollByDir(1); });
+
+    rail.setAttribute('tabindex','0');
+    rail.addEventListener('keydown', function(e){
+      if(e.key==='ArrowLeft'){ e.preventDefault(); scrollByDir(-1); }
+      if(e.key==='ArrowRight'){ e.preventDefault(); scrollByDir(1); }
+    });
+    rail.addEventListener('scroll', updateDisabled, {passive:true});
+    window.addEventListener('resize', updateDisabled);
+    updateDisabled();
+  });
+})();
+</script>
+
+<style id="yoshi-hide-scrollbars">
+/* === Hide horizontal scrollbars for card strips (keep scroll behavior) === */
+#packages .grid-3,
+#baGrid {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge legacy */
+}
+#packages .grid-3::-webkit-scrollbar,
+#baGrid::-webkit-scrollbar {
+  display: none;                  /* Safari/Chrome */
+  width: 0;
+  height: 0;
+}
+/* Remove extra bottom padding so no track area shows */
+#packages .grid-3 { padding-bottom: 0 !important; }
+#baGrid { padding-bottom: 0 !important; }
+</style>
+
+<style id="yoshi-ba-bigger-cards">
+/* === Make Before & After cards bigger === */
+#baGrid > .ba-slider{
+  flex: 0 0 460px !important;   /* wider cards */
+  max-width: 92vw !important;
+}
+</style>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style id="yoshi-global-section-titles">
+section h2,
+section h3 {
+  padding-top: 40px !important; /* uniform spacing above all section titles */
+}
+</style>
 </head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
 <div class="track"><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>Meguiar’s®</span><span>Chemical Guys®</span><span>Adam’s Polishes®</span><span>P&amp;S®</span><span>RUPES®</span><span>FLEX®</span><span>Menzerna®</span><span>Turtle Wax Pro®</span><span>Optimum Polymer®</span><span>Jescar®</span><span>Griot’s Garage®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span></div>
@@ -1151,6 +1988,14 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
 <!-- Yoshi: hero-bottom marquee (visible on landing, anchored to bottom of hero) -->
 </main>
 <!-- Packages (video cards) -->
+
+<section class="affordable-section y-force-stack" id="affordableSection" style="background:#ffffff; color:#000000;">
+  <div class="affordable-inner">
+    <h3>Affordable, Sustainable Car Care</h3>
+    <h2>We’re committed to creating car care solutions that are effective, affordable, and sustainable for a cleaner car and a cleaner world.</h2>
+    <button class="affordable-btn btn">Book Now</button>
+  </div>
+</section>
 <section aria-labelledby="packages-title" class="section" id="packages"><style>
 #packages .card{ width:340px; height:300px; overflow:hidden; }
 #packages .card .card-body{ overflow:auto; scrollbar-width:thin; }
@@ -1219,9 +2064,9 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
 <div class="ba-grid" id="baGrid">
 <!-- Slider 1 -->
 <figure class="ba-slider" data-initial="50" style="--pos:50%">
-<img alt="Before: paint correction on black sedan" class="ba-img ba-before" decoding="async" loading="lazy" src="ba1-before.jpg"/>
-<img alt="After: paint correction on black sedan — swirl-free glossy finish" class="ba-img ba-after" decoding="async" loading="lazy" src="ba1-after.jpg"/>
-<figcaption class="sr-only">Drag the sponge to compare before and after.</figcaption>
+<figure class="g-item"><img alt="Before: paint correction on black sedan" class="ba-img ba-before" decoding="async" loading="lazy" src="ba1-before.jpg"/>
+<figcaption>Before: paint correction on black sedan</figcaption></figure><figure class="g-item"><img alt="After: paint correction on black sedan — swirl-free glossy finish" class="ba-img ba-after" decoding="async" loading="lazy" src="ba1-after.jpg"/>
+<figcaption>After: paint correction on black sedan — swirl-free glossy finish</figcaption></figure><figcaption class="sr-only">Drag the sponge to compare before and after.</figcaption>
 <!-- Labels -->
 <span class="ba-tag ba-tag-before">Before</span>
 <span class="ba-tag ba-tag-after">After</span>
@@ -1234,9 +2079,9 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
 </figure>
 <!-- Slider 2 -->
 <figure class="ba-slider" data-initial="50" style="--pos:50%">
-<img alt="Before: interior deep clean - stained seats" class="ba-img ba-before" decoding="async" loading="lazy" src="ba2-before.jpg"/>
-<img alt="After: interior deep clean - stain removal and fabric refresh" class="ba-img ba-after" decoding="async" loading="lazy" src="ba2-after.jpg"/>
-<figcaption class="sr-only">Drag the sponge to compare before and after.</figcaption>
+<figure class="g-item"><img alt="Before: interior deep clean - stained seats" class="ba-img ba-before" decoding="async" loading="lazy" src="ba2-before.jpg"/>
+<figcaption>Before: interior deep clean - stained seats</figcaption></figure><figure class="g-item"><img alt="After: interior deep clean - stain removal and fabric refresh" class="ba-img ba-after" decoding="async" loading="lazy" src="ba2-after.jpg"/>
+<figcaption>After: interior deep clean - stain removal and fabric refresh</figcaption></figure><figcaption class="sr-only">Drag the sponge to compare before and after.</figcaption>
 <span class="ba-tag ba-tag-before">Before</span>
 <span class="ba-tag ba-tag-after">After</span>
 <span aria-hidden="true" class="ba-divider"></span>
@@ -1246,9 +2091,9 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
 </figure>
 <!-- Slider 3 -->
 <figure class="ba-slider" data-initial="50" style="--pos:50%">
-<img alt="Before: wheel &amp; tire restoration - brake dust buildup" class="ba-img ba-before" decoding="async" loading="lazy" src="ba3-before.jpg"/>
-<img alt="After: wheel &amp; tire restoration - clean spokes and dressed tires" class="ba-img ba-after" decoding="async" loading="lazy" src="ba3-after.jpg"/>
-<figcaption class="sr-only">Drag the sponge to compare before and after.</figcaption>
+<figure class="g-item"><img alt="Before: wheel &amp; tire restoration - brake dust buildup" class="ba-img ba-before" decoding="async" loading="lazy" src="ba3-before.jpg"/>
+<figcaption>Before: wheel &amp; tire restoration - brake dust buildup</figcaption></figure><figure class="g-item"><img alt="After: wheel &amp; tire restoration - clean spokes and dressed tires" class="ba-img ba-after" decoding="async" loading="lazy" src="ba3-after.jpg"/>
+<figcaption>After: wheel &amp; tire restoration - clean spokes and dressed tires</figcaption></figure><figcaption class="sr-only">Drag the sponge to compare before and after.</figcaption>
 <span class="ba-tag ba-tag-before">Before</span>
 <span class="ba-tag ba-tag-after">After</span>
 <span aria-hidden="true" class="ba-divider"></span>
@@ -1258,9 +2103,9 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
 </figure>
 <!-- Slider 4 -->
 <figure class="ba-slider" data-initial="50" style="--pos:50%">
-<img alt="Before: headlight restoration - hazy lens" class="ba-img ba-before" decoding="async" loading="lazy" src="ba4-before.jpg"/>
-<img alt="After: headlight restoration - clear, bright lens" class="ba-img ba-after" decoding="async" loading="lazy" src="ba4-after.jpg"/>
-<figcaption class="sr-only">Drag the sponge to compare before and after.</figcaption>
+<figure class="g-item"><img alt="Before: headlight restoration - hazy lens" class="ba-img ba-before" decoding="async" loading="lazy" src="ba4-before.jpg"/>
+<figcaption>Before: headlight restoration - hazy lens</figcaption></figure><figure class="g-item"><img alt="After: headlight restoration - clear, bright lens" class="ba-img ba-after" decoding="async" loading="lazy" src="ba4-after.jpg"/>
+<figcaption>After: headlight restoration - clear, bright lens</figcaption></figure><figcaption class="sr-only">Drag the sponge to compare before and after.</figcaption>
 <span class="ba-tag ba-tag-before">Before</span>
 <span class="ba-tag ba-tag-after">After</span>
 <span aria-hidden="true" class="ba-divider"></span>
@@ -1935,5 +2780,96 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
     setMarqueeHeight();
   }
   window.addEventListener('resize', setMarqueeHeight);
-})();</script></body>
-</html>
+})();</script>
+
+
+
+
+
+
+
+
+
+
+<style id="yoshi-affordable-section-SCOPED">
+#affordableSection {
+  background:#ffffff;
+  width:100%;
+  max-width:none;
+  margin:0 auto var(--section-gap,72px);
+  padding-top:0;
+  padding-right:20px;
+  padding-bottom:0 !important; /* bottom padding removed */
+  padding-left:20px;
+  text-align:center;
+  font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans';
+}
+#affordableSection h2, #affordableSection h3 { color:#000; }
+#affordableSection .affordable-inner { max-width: 1000px; margin: 0 auto; }
+#affordableSection .btn {
+  display:inline-block;
+  margin-left:auto;
+  margin-right:auto;
+  background:#007BFF !important;
+  color:#ffffff !important;
+  border:none !important;
+  padding:12px 28px !important;
+  border-radius:8px !important;
+}
+#affordableSection .btn:hover { background:#0056b3 !important; }
+</style>
+
+
+
+
+
+
+
+<style id="yoshi-affordable-section-FINAL">
+#affordableSection {
+  background:#ffffff !important;
+  color:#000000 !important;
+  width:100% !important;
+  max-width:none !important;
+  padding-top:80px !important;
+  padding-bottom:80px !important;
+  margin-bottom:0 !important; /* remove space padding from bottom section */
+}
+#affordableSection h2,
+#affordableSection h3,
+#affordableSection p {
+  color:#000000 !important;
+}
+#affordableSection .affordable-inner {
+  max-width: 1400px !important;
+  margin: 0 auto;
+}
+#affordableSection .btn {
+  background:#007BFF !important;
+  color:#ffffff !important;
+  border:none !important;
+  padding:14px 36px !important;
+  border-radius:8px !important;
+  font-size:1.1rem !important;
+}
+#affordableSection .btn:hover {
+  background:#0056b3 !important;
+}
+</style>
+
+<style id="yoshi-affordable-innertext-topfix">
+#affordableSection .affordable-inner h2,
+#affordableSection .affordable-inner h3 {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+</style>
+
+<style id="yoshi-highlight-blue">
+#affordableSection .highlight-blue {
+  color: #007BFF !important;
+  font-weight: 700 !important;
+}
+</style>
+</body>
+</html>0
