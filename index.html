@@ -146,26 +146,10 @@ details,
       text-align:center; font-family:"Playfair Display", serif; font-weight:700; font-size:2.2rem;  
       position:relative; padding-bottom:14px; margin:0 0 18px 0;  
     }  
-    .section h2::after{
-  content:""; 
-  position:absolute; 
-  left:50%; 
-  bottom:-6px; 
-  transform:translateX(-50%) scaleX(0);  /* start collapsed at center */
-  transform-origin:center; 
-  width:100%;               /* full width of heading */
-  height:3px; 
-  background:#2b67ff; 
-  border-radius:2px; 
-  box-shadow:0 0 12px rgba(43,103,255,.7),
-             0 0 24px rgba(43,103,255,.5),
-             0 0 36px rgba(43,103,255,.3); 
-  animation: heartbeat-line 2.5s ease-in-out infinite; 
-}
+    
 
 /* Heartbeat animation */
-@keyframes heartbeat-line {
-  0%   { transform:translateX(-50%) scaleX(0); opacity:0; }
+
   15%  { transform:translateX(-50%) scaleX(1.05); opacity:1; }
   30%  { transform:translateX(-50%) scaleX(0.9); opacity:.9; }
   45%  { transform:translateX(-50%) scaleX(1.0); opacity:1; }
@@ -1416,13 +1400,7 @@ section h2, section h3, section .lead-title, section .title {
 })();
 </script>
 
-<style id="yoshi-section-headers-white">
-/* === Force all section header blocks and their children to white === */
-section header,
-section header * {
-  color: #ffffff !important;
-}
-</style>
+
 
 <style id="yoshi-force-titles-white">
 /* === Force section titles to white === */
@@ -1992,8 +1970,8 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
 <section class="affordable-section y-force-stack" id="affordableSection" style="background:#ffffff; color:#000000;">
   <div class="affordable-inner">
     <h3>Affordable, Sustainable Car Care</h3>
-    <h2>We’re committed to creating car care solutions that are effective, affordable, and sustainable for a cleaner car and a cleaner world.</h2>
-    <button class="affordable-btn btn">Book Now</button>
+    <h2>We’re committed to creating car care solutions that are <span class="highlight-blue">effective</span>, <span class="highlight-blue">affordable</span>, and <span class="highlight-blue">sustainable</span> for a cleaner car and a cleaner world.</h2>
+    <button class="affordable-btn btn" onclick="document.getElementById(\'baGrid\').scrollIntoView({ behavior: \'smooth\' });">Check Us Out</button>
   </div>
 </section>
 <section aria-labelledby="packages-title" class="section" id="packages"><style>
@@ -2052,7 +2030,7 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
 <div class="wrap">
 <h2 id="packages-title">Packages</h2>
 <p class="lead">Choose a package that fits your vehicle and schedule. Every option includes a careful inspection and quality guaranteed finish.</p>
-<div class="grid-3"><article class="card"><div class="card-media"><span class="badge">Exterior</span><video autoplay="True" loop="True" muted="True" playsinline="True"><source src="package-express.mp4" type="video/mp4"/></video></div><div class="card-body"><h3>🚗 Exterior Only</h3><div class="price">Starting at $60</div><ul class="ul"><li>Hand wash with pH-balanced premium shampoo</li><li>Wheels, tires &amp; wells deep cleaned</li><li>Tires dressed in a rich satin finish</li><li>Exterior glass polished streak-free</li><li>Spray sealant for instant gloss &amp; protection</li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Now</a></div></article><article class="card"><div class="card-media"><span class="badge">Express</span><video autoplay="True" loop="True" muted="True" playsinline="True"><source src="package-full.mp4" type="video/mp4"/></video></div><div class="card-body"><h3>🚙 Express Detail</h3><div class="price">Starting at $120</div><ul class="ul"><li>Everything in Exterior Only</li><li>Interior vacuum &amp; wipe-down of all surfaces</li><li>Door jambs cleaned and protected</li><li>Interior + exterior glass cleaned</li><li>Tire dressing for that showroom pop</li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Now</a></div></article><article class="card"><div class="card-media"><span class="badge">Signature</span><video autoplay="True" loop="True" muted="True" playsinline="True"><source src="package-ceramic.mp4" type="video/mp4"/></video></div><div class="card-body"><h3>🚘 Signature Detail</h3><div class="price">Starting at $220</div><ul class="ul"><li>Everything in Express Detail</li><li>Clay bar decontamination for silky paint</li><li>Iron remover to clear embedded contaminants</li><li>Premium sealant for 3–6 months of gloss &amp; defense</li><li>Deeper interior clean with vents &amp; crevices refreshed</li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Now</a></div></article><article class="card"><div class="card-media"><span class="badge">Luxury</span><video autoplay="True" loop="True" muted="True" playsinline="True"><source src="package-ceramic.mp4" type="video/mp4"/></video></div><div class="card-body"><h3>🧿 Ceramic Coating</h3><div class="price">Starting at $380</div><ul class="ul"><li>Everything in Signature Detail</li><li>Single-stage machine polish for gloss &amp; light defect removal</li><li>Ceramic or premium polymer protection (6–12 months)</li><li>Leather &amp; fabric conditioning for luxury feel</li><li>Trim restoration for a “like-new” finish</li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Now</a></div></article><article class="card"><div class="card-media"><span class="badge">Add‑Ons</span></div><div class="card-body"><h3>✨ Add-Ons (à la carte)</h3><div class="price">Starting at $25</div><ul class="ul"><li>Engine Bay: starting at <span style="color:#2b67ff; font-weight:700;">$40</span></li><li>Headlight Restoration (pair): starting at <span style="color:#2b67ff; font-weight:700;">$65</span></li><li>Pet Hair Removal: starting at <span style="color:#2b67ff; font-weight:700;">$25</span></li><li>Trim Restore: starting at <span style="color:#2b67ff; font-weight:700;">$45</span></li><li>Clay &amp; Seal (standalone): starting at <span style="color:#2b67ff; font-weight:700;">$60</span></li><li>Paint Correction (single-stage): starting at <span style="color:#2b67ff; font-weight:700;">$220</span></li><li>Multi-Stage Correction: by consult</li><li>Chip/Scratch Touch-Up: starting at <span style="color:#2b67ff; font-weight:700;">$55</span></li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Add to Booking</a></div></article><article class="card"><div class="card-media"><span class="badge">Maintenance</span></div><div class="card-body"><h3>🛡️ Gloss Guard Maintenance Package</h3><div class="price">Starting at $65</div><ul class="ul"><li>✨ What’s Included (per visit):</li><li>Premium pH-balanced hand wash (safe &amp; swirl-free)</li><li>Wheels, tires, and wheel wells cleaned and dressed</li><li>Quick interior vacuum &amp; wipe of high-touch surfaces</li><li>Interior &amp; exterior glass cleaned crystal-clear</li><li>Spray sealant refresh for ongoing gloss &amp; protection</li></ul><ul class="ul"><li>📅 Service Frequency Options:</li><li><span style="color:#2b67ff; font-weight:700;">Bi-Weekly Gloss Guard – every 2 weeks for consistent brilliance</span></li><li>Monthly Gloss Guard – once a month for lasting protection</li></ul><ul class="ul"><li>💲 Investment:</li><li>Sedan/Coupe: starting at <span style="color:#2b67ff; font-weight:700;">$65</span></li><li>SUV/Small Truck: starting at <span style="color:#2b67ff; font-weight:700;">$75</span></li><li>XL/3rd Row: starting at <span style="color:#2b67ff; font-weight:700;">$95</span></li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Gloss Guard</a></div></article></div>
+<div class="grid-3"><article class="card"><div class="card-media"><div class="tag most-popular">Most Popular</div><span class="badge">Exterior</span><video autoplay="True" loop="True" muted="True" playsinline="True"><source src="package-express.mp4" type="video/mp4"/></video></div><div class="card-body"><h3>🚗 Exterior Only</h3><div class="price">Starting at $60</div><ul class="ul"><li>Hand wash with pH-balanced premium shampoo</li><li>Wheels, tires &amp; wells deep cleaned</li><li>Tires dressed in a rich satin finish</li><li>Exterior glass polished streak-free</li><li>Spray sealant for instant gloss &amp; protection</li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Now</a></div></article><article class="express-popular card"><span class="badge badge--popular">Most Popular</span><div class="card-media"><span class="badge">Express</span><video autoplay="True" loop="True" muted="True" playsinline="True"><source src="package-full.mp4" type="video/mp4"/></video></div><div class="card-body"><h3>🚙 Express Detail</h3><div class="price">Starting at $120</div><ul class="ul"><li><em>Everything in Exterior</em></li><li>Interior vacuum &amp; wipe-down of all surfaces</li><li>Door jambs cleaned and protected</li><li>Interior + exterior glass cleaned</li><li>Tire dressing for that showroom pop</li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Now</a></div></article><article class="card"><div class="card-media"><span class="badge">Signature</span><video autoplay="True" loop="True" muted="True" playsinline="True"><source src="package-ceramic.mp4" type="video/mp4"/></video></div><div class="card-body"><h3>🚘 Signature Detail</h3><div class="price">Starting at $220</div><ul class="ul"><li><em>Everything in Express Detail</em></li><li>Clay bar decontamination for silky paint</li><li>Iron remover to clear embedded contaminants</li><li>Premium sealant for 3–6 months of gloss &amp; defense</li><li>Deeper interior clean with vents &amp; crevices refreshed</li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Now</a></div></article><article class="card"><div class="card-media"><span class="badge">Luxury</span><video autoplay="True" loop="True" muted="True" playsinline="True"><source src="package-ceramic.mp4" type="video/mp4"/></video></div><div class="card-body"><h3>🧿 Ceramic Coating</h3><div class="price">Starting at $380</div><ul class="ul"><li><em>Everything in Signature Detail</em></li><li>Single-stage machine polish for gloss &amp; light defect removal</li><li>Ceramic or premium polymer protection (6–12 months)</li><li>Leather &amp; fabric conditioning for luxury feel</li><li>Trim restoration for a “like-new” finish</li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Now</a></div></article><article class="card"><div class="card-media"><span class="badge">Add‑Ons</span></div><div class="card-body"><h3>✨ Add-Ons (à la carte)</h3><div class="price">Starting at $25</div><ul class="ul"><li>Engine Bay: starting at <span style="color:#2b67ff; font-weight:700;">$40</span></li><li>Headlight Restoration (pair): starting at <span style="color:#2b67ff; font-weight:700;">$65</span></li><li>Pet Hair Removal: starting at <span style="color:#2b67ff; font-weight:700;">$25</span></li><li>Trim Restore: starting at <span style="color:#2b67ff; font-weight:700;">$45</span></li><li>Clay &amp; Seal (standalone): starting at <span style="color:#2b67ff; font-weight:700;">$60</span></li><li>Paint Correction (single-stage): starting at <span style="color:#2b67ff; font-weight:700;">$220</span></li><li>Multi-Stage Correction: by consult</li><li>Chip/Scratch Touch-Up: starting at <span style="color:#2b67ff; font-weight:700;">$55</span></li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Add to Booking</a></div></article><article class="card"><div class="card-media"><span class="badge">Maintenance</span></div><div class="card-body"><h3>🛡️ Gloss Guard Maintenance Package</h3><div class="price">Starting at $65</div><ul class="ul"><li>✨ What’s Included (per visit):</li><li>Premium pH-balanced hand wash (safe &amp; swirl-free)</li><li>Wheels, tires, and wheel wells cleaned and dressed</li><li>Quick interior vacuum &amp; wipe of high-touch surfaces</li><li>Interior &amp; exterior glass cleaned crystal-clear</li><li>Spray sealant refresh for ongoing gloss &amp; protection</li></ul><ul class="ul"><li>📅 Service Frequency Options:</li><li><span style="color:#2b67ff; font-weight:700;">Bi-Weekly Gloss Guard – every 2 weeks for consistent brilliance</span></li><li>Monthly Gloss Guard – once a month for lasting protection</li></ul><ul class="ul"><li>💲 Investment:</li><li>Sedan/Coupe: starting at <span style="color:#2b67ff; font-weight:700;">$65</span></li><li>SUV/Small Truck: starting at <span style="color:#2b67ff; font-weight:700;">$75</span></li><li>XL/3rd Row: starting at <span style="color:#2b67ff; font-weight:700;">$95</span></li></ul></div><div class="card-cta"><a class="btn btn-primary" href="#book">Book Gloss Guard</a></div></article></div>
 </div>
 </section>
 <!-- Gallery (REPLACED with 2x2 before/after sliders) -->
@@ -2871,5 +2849,141 @@ marquee > span, .marquee > span, .ticker > span, .scroll-strip > span, .headline
   font-weight: 700 !important;
 }
 </style>
+
+
+
+<style id="yoshi-section-headers-white">
+/* Force white on all prominent section headings */
+section h2, section h3,
+.section h2, .section h3,
+#faq-title, #book-title {
+  color: #ffffff !important;
+}
+</style>
+
+<style id="yoshi-express-detail-mostpopular">
+.express-popular {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.7) !important;
+  border: 2px solid #FFD700 !important;
+}
+.tag.most-popular {
+  background-color: #FFD700 !important;
+  color: #000 !important;
+  font-weight: 700;
+}
+</style>
+
+<style id="yoshi-express-popular-css">
+/* Make "Most Popular" badge look like existing .badge but yellow */
+.badge.badge--popular{
+  background:#FFD700 !important;
+  color:#000 !important;
+  font-weight:700;
+}
+
+/* Highlight the Express card with a soft yellow glow */
+.express-popular{
+  box-shadow: 0 0 20px rgba(255,215,0,.55), 0 0 48px rgba(255,215,0,.25) !important;
+  border: 2px solid #FFD700 !important;
+  position: relative;
+}
+
+/* Ensure badge sits top-left inside the card */
+.express-popular > .badge.badge--popular{
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:2;
+  padding:6px 10px;
+  border-radius:6px;
+  letter-spacing:.2px;
+}
+</style>
+
+<style id="yoshi-express-popular-STRONG">
+/* Brighter gold glow & lighting for the entire card */
+article.card.express-popular {
+  position: relative;
+  border: 2px solid #FFD700 !important;
+  box-shadow:
+    0 0 0 2px rgba(255,215,0,0.9),
+    0 0 28px rgba(255,215,0,0.9),
+    0 0 72px rgba(255,215,0,0.55),
+    0 0 110px rgba(255,215,0,0.35) !important;
+}
+
+/* Subtle gold lighting inside the card background */
+article.card.express-popular::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 60% at 50% 0%,
+               rgba(255,215,0,0.18) 0%,
+               rgba(255,215,0,0.08) 40%,
+               rgba(255,215,0,0.03) 70%,
+               transparent 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Badge style: same format as .badge, recolored yellow and pinned top-left */
+article.card.express-popular > .badge.badge--popular {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  background: #FFD700 !important;
+  color: #000 !important;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 6px;
+  letter-spacing: .2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+</style>
+
+
+
+<style id="yoshi-packages-plus-signs">
+/* Remove bullets in package cards */
+.card ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+.card li {
+  position: relative;
+  padding-left: 1.2em;
+  margin-bottom: 0.5em;
+}
+.card li::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 1;
+}
+/* Suppress plus sign for "Everything in..." lines */
+.card li em::before,
+.card li:has(em)::before {
+  content: "" !important;
+}
+</style>
+
+<style id="yoshi-mobile-booknow-fix">
+@media (max-width: 768px) {
+  .navbar .book-now,
+  .menu .book-now,
+  .nav .book-now,
+  .btn-book-now {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+}
+</style>
 </body>
-</html>0
+</html>
