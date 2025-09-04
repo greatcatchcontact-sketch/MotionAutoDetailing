@@ -3075,5 +3075,56 @@ header + #marquee {
   content: none !important;
 }
 </style>
+
+<style id="yoshi-mobile-btn-marquee-fix3">
+/* ===== Fix 1: Book Now button clipped on mobile ===== */
+@media (max-width: 768px) {
+  header, .header, .navbar, .nav, .site-header {
+    overflow: visible !important;
+    padding-right: 16px !important; /* breathing room on right */
+  }
+  .nav-right { padding-right: 12px !important; }
+  /* Target actual button variants we found */
+  #quoteBtn,
+  a.cta[href="#book"],
+  a.btn.btn-primary[href="#book"] {
+    margin-right: 16px !important;
+    margin-left: auto !important;
+    right: auto !important;
+    left: auto !important;
+    transform: none !important;
+    max-width: calc(100% - 32px) !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* ===== Fix 2: Marquee gap (brand strip) ===== */
+.brand-marquee,
+#yoshi-hero-marquee {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  bottom: -1px !important; /* tuck into hero bottom to remove seam */
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-bottom: 0 !important; /* remove extra space below hero on mobile */
+  }
+}
+
+/* Ensure the section after the marquee starts right away */
+#yoshi-hero-marquee + section,
+.brand-marquee + section {
+  margin-top: 0 !important;
+}
+
+/* Safety: remove any pseudo-element spacing */
+.brand-marquee::before, .brand-marquee::after,
+#yoshi-hero-marquee::before, #yoshi-hero-marquee::after {
+  content: none !important;
+}
+</style>
 </body>
 </html>
