@@ -2995,5 +2995,33 @@ article.card.express-popular > .badge.badge--popular {
   padding-bottom: 5px !important;
 }
 </style>
+
+<style id="yoshi-marquee-tight">
+/* Make marquee flush with surrounding sections when scrolling */
+.marquee, #marquee {
+  display: block !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+/* Ensure the section after the marquee doesn't add a gap */
+#marquee + section,
+.marquee + section {
+  margin-top: 0 !important;
+}
+/* If the hero sits above the marquee, remove any bottom gap on hero */
+.hero + .marquee,
+.hero + #marquee,
+header + .marquee,
+header + #marquee {
+  margin-top: 0 !important;
+}
+/* Safety: collapse any ::before/::after spacing tricks */
+.marquee::before, .marquee::after,
+#marquee::before, #marquee::after {
+  content: none !important;
+}
+</style>
 </body>
 </html>
