@@ -1895,41 +1895,126 @@ section#packages .grid-3 > .card{
 
 
 
-<style id="nav-cta-logo-marquee-fixes">
-/* 1) Desktop: widen Book Now so text stays on one line */
-@media (min-width: 960px){
-  header .cta#quoteBtn{
-    min-width: 140px;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
+<style id="unified-width-and-overflow-fix">
+/* 0) Safety: consistent box sizing */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* 1) Prevent horizontal drift on all devices */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* 2) Single container system for nav + site */
+:root{
+  --site-max: 1160px;
+  --site-pad: clamp(14px, 3vw, 28px);
+}
+/* Outer elements fill width; inner wraps align and pad equally */
+header, nav, main, footer { width: 100%; }
+header .wrap, nav .wrap, main .wrap, footer .wrap,
+section .wrap, .container, .inner {
+  max-width: var(--site-max);
+  margin-inline: auto;
+  padding-inline: var(--site-pad);
 }
 
-/* 2) Desktop: center the logo anchor block */
+/* 3) Ensure hero/media cannot exceed viewport width */
+.hero, .hero .overlay, .hero #heroVideo, .hero video {
+  max-width: 100%;
+}
+
+/* 4) Packages scroller: avoid last-card clipping (keeps behavior stable) */
+#packages .grid-3{
+  scroll-padding-left: 28px;
+  scroll-padding-right: 28px;
+}
+#packages .grid-3::before, #packages .grid-3::after{
+  content: ""; flex: 0 0 28px;
+}
+</style>
+
+
+<style id="logo-center-fix">
 @media (min-width: 960px){
   header .brand-logo-center{
     display: block !important;
     margin: 0 auto !important;
+    text-align: center !important;
+  }
+  header .brand-logo-center img{
+    display: block;
+    margin: 0 auto;
   }
 }
+</style>
 
-/* Optionally ensure header uses flex and allows centering via auto margins */
-@media (min-width: 960px){
-  header{ display: flex; align-items: center; }
-  header nav{ flex: 1 1 auto; }
-  header .nav-right{ display: flex; align-items: center; gap: 10px; }
+
+<style id="header-attached-to-flow">
+/* Attach header to the page flow so it's ONE with the site */
+header{
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+  width: 100%;
 }
+/* No artificial top offset */
+body{ padding-top: 0 !important; }
+/* Optional: small visual separation if desired */
+main{ margin-top: 0; }
+</style>
 
-/* 3) Mobile: lock the marquee to the viewport like on desktop */
-@media (max-width: 959px){
-  #yoshi-hero-marquee{
-    position: fixed !important;
-    left: 0; right: 0; bottom: 0;
-    width: 100%;
-    z-index: 2000;
-    pointer-events: none;
+
+<style id="header-logo-center-final">
+@media (min-width: 960px){
+  header .brand-logo-center {
+    display: block !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+  header .brand-logo-center img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+</style>
+
+
+<style id="header-logo-center-refined">
+@media (min-width: 960px){
+  header{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; /* center header children */
+  }
+  header .brand-logo-center{
+    flex: 0 0 auto;
+    margin: 0 auto !important;
+  }
+  header .brand-logo-center img{
+    display: block;
+    margin: 0 auto;
+  }
+  /* Push the right-side actions (Book Now) to the far right */
+  header .nav-right{
+    margin-left: auto !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+</style>
+
+
+<style id="header-logo-center-absolute">
+@media (min-width: 960px){
+  header{ position: relative !important; }
+  header .brand-logo-center{
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  header .brand-logo-center img{
+    display: block;
+    height: auto;
+    margin: 0 auto;
   }
 }
 </style>
