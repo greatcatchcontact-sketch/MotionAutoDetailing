@@ -1895,13 +1895,39 @@ section#packages .grid-3 > .card{
 
 
 
-<style id="packages-lead-centered">
-#packages .lead {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 24px;
-  line-height: 1.6;
+<style id="mobile-enhancements-minimal">
+:root{
+  --container-pad: clamp(14px, 3vw, 28px);
+  --lead-max: 720px;
 }
+
+/* Containers get gentle side padding on all sections */
+section .wrap, .container, .inner { padding-inline: var(--container-pad); }
+
+/* Hero text block width hygiene without touching CTAs/buttons */
+.hero h1 { max-width: 15ch; }
+.hero .subhead, .hero .lead { max-width: min(var(--lead-max), 92vw); padding-inline: 2px; }
+
+/* Packages: responsive card width + anti-clipping spacers */
+#packages .lead { text-align: center; margin: 0 auto 20px; max-width: min(var(--lead-max), 92vw); padding-inline: 10px; }
+#packages .grid-3 {
+  display: flex !important;
+  gap: 14px !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding-bottom: 10px !important;
+  scroll-padding-left: 28px;
+  scroll-padding-right: 28px;
+}
+#packages .grid-3 > .card {
+  flex: 0 0 clamp(280px, 72vw, 340px) !important;
+  scroll-snap-align: start !important;
+  border-radius: 16px;
+}
+#packages .grid-3::before, #packages .grid-3::after{ content:""; flex: 0 0 28px; }
+
+/* Do NOT touch nav/menu, buttons, or animations */
 </style>
 
 </head>
