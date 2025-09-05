@@ -1863,6 +1863,47 @@ section h3 {
   padding-top: 40px !important; /* uniform spacing above all section titles */
 }
 </style>
+<style id='yoshi-consolidated-ui'>/* consolidated core css here */</style>
+<style id="yoshi-centered-logo">
+/* Center logo in header */
+header.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:fixed;
+  width:100%;
+}
+header.header .brand-logo-center{
+  flex:1;
+  display:flex;
+  justify-content:center;
+}
+header.header .brand-logo-center img{
+  max-height:48px;
+  width:auto;
+}
+#menuBtn{ order:0; }
+.nav-right{ order:2; margin-left:0; }
+</style>
+
+
+<style id="packages-taller-final">
+section#packages .grid-3 > .card{
+  min-height: 600px !important;
+}
+</style>
+
+
+
+<style id="packages-lead-centered">
+#packages .lead {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+}
+</style>
+
 </head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
 <div class="track"><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>Meguiar’s®</span><span>Chemical Guys®</span><span>Adam’s Polishes®</span><span>P&amp;S®</span><span>RUPES®</span><span>FLEX®</span><span>Menzerna®</span><span>Turtle Wax Pro®</span><span>Optimum Polymer®</span><span>Jescar®</span><span>Griot’s Garage®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span></div>
@@ -2993,137 +3034,6 @@ article.card.express-popular > .badge.badge--popular {
   line-height: calc(100% + 10px) !important;
   padding-top: 5px !important;
   padding-bottom: 5px !important;
-}
-</style>
-
-<style id="yoshi-marquee-tight">
-/* Make marquee flush with surrounding sections when scrolling */
-.marquee, #marquee {
-  display: block !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  border-top: none !important;
-  border-bottom: none !important;
-}
-/* Ensure the section after the marquee doesn't add a gap */
-#marquee + section,
-.marquee + section {
-  margin-top: 0 !important;
-}
-/* If the hero sits above the marquee, remove any bottom gap on hero */
-.hero + .marquee,
-.hero + #marquee,
-header + .marquee,
-header + #marquee {
-  margin-top: 0 !important;
-}
-/* Safety: collapse any ::before/::after spacing tricks */
-.marquee::before, .marquee::after,
-#marquee::before, #marquee::after {
-  content: none !important;
-}
-</style>
-
-<style id="yoshi-mobile-btn-marquee-fix2">
-/* --- Navbar "Book Now" mobile cut-off fix --- */
-@media (max-width: 768px) {
-  /* Normalize container so the button can't overflow out of view */
-  header, .header, .navbar, .nav, .menu, .nav-bar {
-    overflow: visible !important;
-    padding-right: 12px !important; /* give breathing room on the right */
-  }
-
-  /* Target likely button classes; shift left with margin and cancel absolute transforms */
-  .btn-book-now, .book-now, .nav .btn, .navbar .btn.cta, .nav .cta, .menu .btn-book-now {
-    position: relative !important;
-    right: auto !important;
-    left: auto !important;
-    transform: none !important;
-    margin-left: auto !important;
-    margin-right: 12px !important;  /* pull it in from the edge */
-    max-width: calc(100% - 24px) !important; /* ensure it never clips */
-    box-sizing: border-box !important;
-  }
-}
-
-/* --- Marquee gap killer --- */
-.marquee, #marquee {
-  display: block !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  padding-top: 5px !important;   /* retain your taller size from before */
-  padding-bottom: 5px !important;
-  line-height: normal !important;
-}
-
-/* Nuke top margin on the section *after* marquee */
-#marquee + section, .marquee + section, .marquee + .section, #marquee + .section {
-  margin-top: 0 !important;
-}
-
-/* Ensure the hero (or whatever sits above the marquee) doesn't add bottom spacing */
-.hero, .hero-wrap, .hero__footer, .hero + .marquee, .hero + #marquee {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* Neutralize pseudo-elements that might create the visual gap */
-.marquee::before, .marquee::after, #marquee::before, #marquee::after,
-.hero::after, .hero::before {
-  content: none !important;
-}
-</style>
-
-<style id="yoshi-mobile-btn-marquee-fix3">
-/* ===== Fix 1: Book Now button clipped on mobile ===== */
-@media (max-width: 768px) {
-  header, .header, .navbar, .nav, .site-header {
-    overflow: visible !important;
-    padding-right: 16px !important; /* breathing room on right */
-  }
-  .nav-right { padding-right: 12px !important; }
-  /* Target actual button variants we found */
-  #quoteBtn,
-  a.cta[href="#book"],
-  a.btn.btn-primary[href="#book"] {
-    margin-right: 16px !important;
-    margin-left: auto !important;
-    right: auto !important;
-    left: auto !important;
-    transform: none !important;
-    max-width: calc(100% - 32px) !important;
-    box-sizing: border-box !important;
-  }
-}
-
-/* ===== Fix 2: Marquee gap (brand strip) ===== */
-.brand-marquee,
-#yoshi-hero-marquee {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  bottom: -1px !important; /* tuck into hero bottom to remove seam */
-}
-
-@media (max-width: 768px) {
-  .hero {
-    padding-bottom: 0 !important; /* remove extra space below hero on mobile */
-  }
-}
-
-/* Ensure the section after the marquee starts right away */
-#yoshi-hero-marquee + section,
-.brand-marquee + section {
-  margin-top: 0 !important;
-}
-
-/* Safety: remove any pseudo-element spacing */
-.brand-marquee::before, .brand-marquee::after,
-#yoshi-hero-marquee::before, #yoshi-hero-marquee::after {
-  content: none !important;
 }
 </style>
 </body>
