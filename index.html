@@ -1930,6 +1930,32 @@ section .wrap, .container, .inner { padding-inline: var(--container-pad); }
 /* Do NOT touch nav/menu, buttons, or animations */
 </style>
 
+
+<style id="anti-drift-mobile-fix">
+/* 1) Kill horizontal overflow that causes the page to "drift" left */
+html, body { max-width: 100%; overflow-x: hidden; }
+/* 2) Ensure hero & overlays never exceed viewport width */
+.hero, .hero * { box-sizing: border-box; }
+.hero, .hero .overlay, .hero video, .hero #heroVideo, .hero .content {
+  max-width: 100vw; width: 100%;
+}
+/* 3) Contain marquee & belts so they can't push the layout horizontally */
+#yoshi-hero-marquee, .brand-marquee, .reviews .belt, #gallery, #packages {
+  overflow-x: hidden;
+}
+/* 4) Make sure absolute/fixed elements respect viewport edges */
+header, footer { max-width: 100vw; overflow-x: hidden; }
+/* 5) Safety: any element claiming 100vw inside a padded container can overflow; clamp it */
+[class*="wrap"], .container, .inner { max-width: 100%; overflow-x: hidden; }
+/* 6) On small screens, remove any negative margins that could push content off-canvas */
+@media (max-width: 768px){
+  .neg-mx, .mx-neg, .mx--1, .mx--2 { margin-inline: 0 !important; }
+  #packages .pkg-nav { display: none !important; } /* already hidden, re-assert */
+  /* Prevent accidental wide transforms */
+  .wide, .w-100vw { width: 100% !important; max-width: 100vw !important; }
+}
+</style>
+
 </head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
 <div class="track"><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>Meguiar’s®</span><span>Chemical Guys®</span><span>Adam’s Polishes®</span><span>P&amp;S®</span><span>RUPES®</span><span>FLEX®</span><span>Menzerna®</span><span>Turtle Wax Pro®</span><span>Optimum Polymer®</span><span>Jescar®</span><span>Griot’s Garage®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span></div>
