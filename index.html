@@ -1894,6 +1894,46 @@ section#packages .grid-3 > .card{
 </style>
 
 
+
+<style id="nav-cta-logo-marquee-fixes">
+/* 1) Desktop: widen Book Now so text stays on one line */
+@media (min-width: 960px){
+  header .cta#quoteBtn{
+    min-width: 140px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 2) Desktop: center the logo anchor block */
+@media (min-width: 960px){
+  header .brand-logo-center{
+    display: block !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Optionally ensure header uses flex and allows centering via auto margins */
+@media (min-width: 960px){
+  header{ display: flex; align-items: center; }
+  header nav{ flex: 1 1 auto; }
+  header .nav-right{ display: flex; align-items: center; gap: 10px; }
+}
+
+/* 3) Mobile: lock the marquee to the viewport like on desktop */
+@media (max-width: 959px){
+  #yoshi-hero-marquee{
+    position: fixed !important;
+    left: 0; right: 0; bottom: 0;
+    width: 100%;
+    z-index: 2000;
+    pointer-events: none;
+  }
+}
+</style>
+
 </head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
 <div class="track"><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>Meguiar’s®</span><span>Chemical Guys®</span><span>Adam’s Polishes®</span><span>P&amp;S®</span><span>RUPES®</span><span>FLEX®</span><span>Menzerna®</span><span>Turtle Wax Pro®</span><span>Optimum Polymer®</span><span>Jescar®</span><span>Griot’s Garage®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span></div>
