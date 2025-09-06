@@ -1969,59 +1969,353 @@ main{ margin-top: 0; }
   }
 }
 </style>
-<style id="yoshi-mobile-centerlogo-grid">
-/* C-002e — Grid header: left(hamburger) | center(logo) | right(CTA) */
+<style id="yoshi-mobile-fullwidth">
+/* Unify mobile width so site body matches the nav bar */
+@media (max-width: 900px){
+  .wrap,
+  section .wrap,
+  .section .wrap,
+  #packages .wrap,
+  #gallery .wrap,
+  #reviews .wrap,
+  #contact .wrap{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  section,
+  .section{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  html, body{
+    overflow-x: hidden !important;
+  }
+}
+</style><style id="yoshi-mobile-fullwidth">
+/* Unify mobile width so site body matches the nav bar */
+@media (max-width: 900px){
+  .wrap,
+  section .wrap,
+  .section .wrap,
+  #packages .wrap,
+  #gallery .wrap,
+  #reviews .wrap,
+  #contact .wrap{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  section,
+  .section{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  html, body{
+    overflow-x: hidden !important;
+  }
+}
+</style><style id="yoshi-mobile-centerlogo">
+/* Center logo inside nav on mobile */
+@media (max-width: 900px){
+  header.header {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  header.header .brand,
+  header.header .brand-logo-img {
+    margin: 0 auto !important;
+    display: block !important;
+    float: none !important;
+  }
+  .nav-right {
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+  }
+  #menuBtn {
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+  }
+}
+</style><style id="yoshi-mobile-centerlogo-abs">
+/* C-002b: Absolute center the brand/logo on mobile, anchor controls left/right */
 @media (max-width: 900px){
   header.header{
-    display: grid !important;
-    grid-template-columns: 56px 1fr 56px !important;
-    grid-template-rows: 1fr !important;
-    align-items: center !important;
-    justify-items: center !important;
-    padding: 0 8px !important;
-    height: var(--hdrH, 80px) !important;
+    position: fixed !important;  /* ensure positioned ancestor */
+    inset: 0 0 auto 0 !important;
+    height: var(--hdrH, 74px) !important;
   }
 
-  /* Reset any absolute/transform from prior candidates */
-  header.header .brand,
+  /* Make sure brand pieces are visible (override any prior display:none) */
   header.header .brand-badge,
-  header.header .brand-title,
-  header.header img.brand-logo-img,
-  header.header [class*="logo"]{
-    position: static !important;
-    transform: none !important;
-    margin: 0 auto !important;
+  header.header .brand-title{
     display: inline-flex !important;
-    justify-self: center !important;
+  }
+
+  /* Absolute center the brand link/container */
+  header.header .brand{
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    display: inline-flex !important;
     align-items: center !important;
-    max-width: 100% !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    float: none !important;
   }
 
-  /* Place items into columns */
-  #menuBtn, .menu-btn{
-    position: static !important;
-    grid-column: 1 !important;
-    justify-self: start !important;
+  /* Pin hamburger to the left */
+  .menu-btn, #menuBtn{
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
   }
-  /* Center brand/logo column */
-  header.header .brand,
-  header.header img.brand-logo-img,
-  header.header [class*="logo"]{
-    grid-column: 2 !important;
-  }
-  /* Right-side CTA block */
+
+  /* Pin CTA group to the right */
   .nav-right{
-    position: static !important;
-    grid-column: 3 !important;
-    justify-self: end !important;
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
   }
 
-  /* Keep the dropdown below header */
+  /* Prevent layout shifts from nav links panel */
   .nav .links{
+    top: var(--hdrH, 74px) !important;
+  }
+}
+</style><style id="yoshi-mobile-centerlogo-cushioned">
+/* C-002c: Absolute center + cushioned gutters so logo doesn't sit under buttons */
+@media (max-width: 900px){
+  header.header{
     position: fixed !important;
-    top: var(--hdrH, 80px) !important;
+    inset: 0 0 auto 0 !important;
+    height: var(--hdrH, 80px) !important;
+    padding-left: 72px !important;   /* leave space for hamburger */
+    padding-right: 72px !important;  /* leave space for Book Now */
+  }
+
+  /* Pin controls left/right */
+  .menu-btn, #menuBtn{
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 3 !important;
+  }
+  .nav-right{
+    position: absolute !important;
     right: 12px !important;
-    left: auto !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 3 !important;
+  }
+
+  /* Absolute-center ANY plausible logo/brand element */
+  header.header .brand,
+  header.header .brand-logo-center,
+  header.header .brand-title,
+  header.header .brand-badge,
+  header.header .brand img,
+  header.header img.brand-logo-img,
+  header.header img[alt*="logo" i],
+  header.header [class*="logo"]{
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    float: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    max-width: calc(100vw - 160px) !important; /* keep clear of side buttons */
+    z-index: 2 !important;
+  }
+
+  /* Keep dropdown from overlapping header center area */
+  .nav .links{
+    top: var(--hdrH, 80px) !important;
+  }
+}
+</style><style id="yoshi-packages-responsive-cards-85vw">
+/* === C-003c: Packages responsive card sizing (85vw preferred) === */
+/* Single-purpose patch: do not modify any other components */
+@media (max-width: 900px){
+  #packages .grid-3 > .card{
+    /* override older fixed 340px rule from horizontal scroller */
+    flex: 0 0 clamp(260px, 85vw, 340px) !important;
+    max-width: clamp(260px, 85vw, 340px) !important;
+  }
+  /* ultra-narrow safety */
+  @media (max-width: 380px){
+    #packages .grid-3 > .card{
+      flex-basis: calc(100vw - 24px) !important;
+      max-width: calc(100vw - 24px) !important;
+    }
+  }
+}
+</style><style id="yoshi-packages-center-snap">
+/* === C-004: Center first card by default + snap cards to center === */
+/* Single-purpose patch scoped to #packages only */
+@media (max-width: 900px){
+  /* Make the scroller center its items and snap */
+  #packages .grid-3{
+    /* in case earlier CSS set it to flex already, keep it */
+    display: flex !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    /* Side gutters so the FIRST and LAST cards sit centered */
+    padding-left: calc((100vw - clamp(260px, 85vw, 340px)) / 2) !important;
+    padding-right: calc((100vw - clamp(260px, 85vw, 340px)) / 2) !important;
+  }
+
+  /* Each card snaps to the viewport center */
+  #packages .grid-3 > .card{
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    flex: 0 0 clamp(260px, 85vw, 340px) !important; /* keep width rule */
+    max-width: clamp(260px, 85vw, 340px) !important;
+  }
+}
+</style><style id="yoshi-packages-center-snap-v2">
+/* === C-004b: Center first card perfectly + smaller width === */
+@media (max-width: 900px){
+  /* Make the packages wrapper use full width so our math is correct */
+  #packages .wrap{
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Horizontal scroller: snap + dynamic gutters based on container width */
+  #packages .grid-3{
+    display: flex !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    /* Gutters compute from container width, not viewport (fixes off-center) */
+    padding-left: calc((100% - clamp(240px, 78vw, 320px)) / 2) !important;
+    padding-right: calc((100% - clamp(240px, 78vw, 320px)) / 2) !important;
+  }
+
+  /* Cards: a bit narrower than before and snap to center */
+  #packages .grid-3 > .card{
+    flex: 0 0 clamp(240px, 78vw, 320px) !important;
+    max-width: clamp(240px, 78vw, 320px) !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+  }
+}
+</style><style id="yoshi-marquee-in-hero">
+/* === C-005: Pin marquee to bottom INSIDE the hero === */
+:root{ --marqueeH: 92px; } /* adjust if your marquee bar is taller/shorter */
+
+.hero{
+  position: relative !important;
+  padding-bottom: var(--marqueeH) !important; /* reserve space so it doesn't overlap CTAs */
+}
+
+/* Anchor the marquee inside the hero, bottom-aligned */
+#yoshi-hero-marquee{
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: auto !important;
+  width: 100% !important;
+  z-index: 10 !important;               /* above hero video, below fixed header */
+  pointer-events: none !important;      /* don't block hero buttons */
+  display: block !important;            /* neutralize any scroll-hide scripts */
+}
+
+/* Avoid global page-level placement */
+body, html{
+  overflow-x: hidden;
+}
+</style><style id="yoshi-marquee-in-hero-forced">
+/* === C-005b: Force marquee INSIDE the first .hero section, bottom-aligned === */
+.hero{ position: relative !important; }
+
+/* Lock the marquee inside hero at the very bottom */
+#yoshi-hero-marquee[data-locked="in-hero"]{
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: auto !important;
+  width: 100% !important;
+  z-index: 10 !important;           /* above hero media, below fixed header */
+  pointer-events: none !important;  /* keep hero CTAs clickable */
+}
+
+/* Reserve dynamic space under hero content to avoid overlap */
+.hero[data-mqpad="on"]{
+  padding-bottom: var(--mqH, 92px) !important;
+}
+</style><style id="yoshi-hero-tight">
+/* === C-006: Tighten hero so marquee fits inside viewport === */
+.hero{
+  min-height: calc(100vh - var(--mqH, 92px)) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+</style><style id="yoshi-hero-tight-desktop">
+/* === C-006b: Desktop—make marquee visible without scrolling === */
+/* Account for fixed header height so hero doesn't push marquee below 1st viewport */
+@media (min-width: 901px){
+  .hero{
+    min-height: calc(100vh - var(--mqH, 92px) - var(--hdrH, 88px)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+}
+</style><style id="yoshi-hero-fill-bottom">
+/* === C-006c: Hero fills full viewport, marquee pinned to absolute bottom === */
+.hero{
+  height: 100vh !important;
+  min-height: 100vh !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+/* Pin marquee inside hero, always at screen bottom */
+#yoshi-hero-marquee[data-locked="in-hero"]{
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+</style><style id="yoshi-hero-desktop-subtract-header">
+/* === C-006d: Desktop fix — account for fixed header height === */
+@media (min-width: 901px){
+  .hero{
+    height: calc(100vh - var(--hdrH, 88px)) !important;
+    min-height: calc(100vh - var(--hdrH, 88px)) !important;
   }
 }
 </style></head>
@@ -3085,5 +3379,97 @@ article.card.express-popular > .badge.badge--popular {
   padding-bottom: 5px !important;
 }
 </style>
-</body>
+<script id="yoshi-packages-center-onload">
+(function(){
+  function centerFirstCard(){
+    var rail = document.querySelector('#packages .grid-3');
+    if(!rail) return;
+    var card = rail.querySelector('.card');
+    if(!card) return;
+    // compute left so first card sits centered in the viewport
+    var left = card.offsetLeft - (rail.clientWidth - card.clientWidth) / 2;
+    rail.scrollLeft = Math.max(0, left);
+  }
+
+  // Run on load
+  if(document.readyState !== 'loading') centerFirstCard();
+  else document.addEventListener('DOMContentLoaded', centerFirstCard);
+
+  // Recenter when #packages enters viewport (e.g., after scrolling down)
+  if('IntersectionObserver' in window){
+    var sec = document.getElementById('packages');
+    if(sec){
+      var once = false;
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting && !once){
+            once = true;
+            centerFirstCard();
+            // small extra nudge after images/videos layout
+            setTimeout(centerFirstCard, 150);
+            setTimeout(centerFirstCard, 400);
+          }
+        });
+      }, {threshold: 0.25});
+      io.observe(sec);
+    }
+  }
+
+  // Recenter on resize / orientation change
+  window.addEventListener('resize', function(){ setTimeout(centerFirstCard, 100); });
+  window.addEventListener('orientationchange', function(){ setTimeout(centerFirstCard, 150); });
+})();
+</script><script id="yoshi-marquee-attach-inhero">
+(function(){
+  function moveMarqueeIntoHero(){
+    var hero = document.querySelector('.hero');
+    var mq = document.getElementById('yoshi-hero-marquee');
+    if(!hero || !mq) return;
+
+    // If marquee isn't already a child of hero, move it
+    if(mq.parentElement !== hero){
+      hero.appendChild(mq);
+    }
+
+    // Measure height and set padding on hero so content doesn't overlap
+    // Use getBoundingClientRect for reliable layout, fall back to offsetHeight
+    var h = mq.getBoundingClientRect ? mq.getBoundingClientRect().height : mq.offsetHeight || 92;
+    hero.style.setProperty('--mqH', h + 'px');
+    hero.setAttribute('data-mqpad', 'on');
+
+    // Tag marquee as locked-in for CSS overrides
+    mq.setAttribute('data-locked', 'in-hero');
+
+    // Ensure it's visible (in case earlier scripts hid it on scroll)
+    mq.style.display = 'block';
+  }
+
+  // Run on DOM ready
+  if(document.readyState !== 'loading') moveMarqueeIntoHero();
+  else document.addEventListener('DOMContentLoaded', moveMarqueeIntoHero);
+
+  // Re-run after images/videos load (hero height may shift)
+  window.addEventListener('load', function(){
+    setTimeout(moveMarqueeIntoHero, 50);
+    setTimeout(moveMarqueeIntoHero, 250);
+  });
+
+  // Keep it correct on resize/orientation
+  window.addEventListener('resize', function(){ setTimeout(moveMarqueeIntoHero, 50); });
+  window.addEventListener('orientationchange', function(){ setTimeout(moveMarqueeIntoHero, 100); });
+})();
+</script><script id="yoshi-set-header-height-var">
+(function(){
+  function setHdrVar(){
+    var hdr = document.querySelector('header.header');
+    var h = hdr ? (hdr.getBoundingClientRect().height || hdr.offsetHeight || 88) : 88;
+    document.documentElement.style.setProperty('--hdrH', h + 'px');
+  }
+  if(document.readyState !== 'loading') setHdrVar();
+  else document.addEventListener('DOMContentLoaded', setHdrVar);
+  window.addEventListener('load', setHdrVar);
+  window.addEventListener('resize', function(){ setTimeout(setHdrVar, 50); });
+  window.addEventListener('orientationchange', function(){ setTimeout(setHdrVar, 100); });
+})();
+</script></body>
 </html>
