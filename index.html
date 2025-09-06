@@ -2097,6 +2097,60 @@ main{ margin-top: 0; }
     top: var(--hdrH, 74px) !important;
   }
 }
+</style><style id="yoshi-mobile-centerlogo-cushioned">
+/* C-002c: Absolute center + cushioned gutters so logo doesn't sit under buttons */
+@media (max-width: 900px){
+  header.header{
+    position: fixed !important;
+    inset: 0 0 auto 0 !important;
+    height: var(--hdrH, 80px) !important;
+    padding-left: 72px !important;   /* leave space for hamburger */
+    padding-right: 72px !important;  /* leave space for Book Now */
+  }
+
+  /* Pin controls left/right */
+  .menu-btn, #menuBtn{
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 3 !important;
+  }
+  .nav-right{
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 3 !important;
+  }
+
+  /* Absolute-center ANY plausible logo/brand element */
+  header.header .brand,
+  header.header .brand-logo-center,
+  header.header .brand-title,
+  header.header .brand-badge,
+  header.header .brand img,
+  header.header img.brand-logo-img,
+  header.header img[alt*="logo" i],
+  header.header [class*="logo"]{
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    float: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    max-width: calc(100vw - 160px) !important; /* keep clear of side buttons */
+    z-index: 2 !important;
+  }
+
+  /* Keep dropdown from overlapping header center area */
+  .nav .links{
+    top: var(--hdrH, 80px) !important;
+  }
+}
 </style></head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
 <div class="track"><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>Meguiar’s®</span><span>Chemical Guys®</span><span>Adam’s Polishes®</span><span>P&amp;S®</span><span>RUPES®</span><span>FLEX®</span><span>Menzerna®</span><span>Turtle Wax Pro®</span><span>Optimum Polymer®</span><span>Jescar®</span><span>Griot’s Garage®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span></div>
