@@ -1995,161 +1995,31 @@ main{ margin-top: 0; }
     overflow-x: hidden !important;
   }
 }
-</style><style id="yoshi-mobile-fullwidth">
-/* Unify mobile width so site body matches the nav bar */
-@media (max-width: 900px){
-  .wrap,
-  section .wrap,
-  .section .wrap,
-  #packages .wrap,
-  #gallery .wrap,
-  #reviews .wrap,
-  #contact .wrap{
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  section,
-  .section{
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-  html, body{
-    overflow-x: hidden !important;
-  }
+</style><style id="yoshi-packages-responsive-cards">
+/* Default keeps your current desktop look */
+#packages .grid-3 > .card{
+  max-width: 100% !important;
 }
-</style><style id="yoshi-mobile-centerlogo">
-/* Center logo inside nav on mobile */
+
+/* Phones & small tablets: make cards clamp to the viewport */
 @media (max-width: 900px){
-  header.header {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-  header.header .brand,
-  header.header .brand-logo-img {
-    margin: 0 auto !important;
-    display: block !important;
-    float: none !important;
-  }
-  .nav-right {
-    position: absolute !important;
-    right: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%);
-  }
-  #menuBtn {
-    position: absolute !important;
-    left: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%);
-  }
-}
-</style><style id="yoshi-mobile-centerlogo-abs">
-/* C-002b: Absolute center the brand/logo on mobile, anchor controls left/right */
-@media (max-width: 900px){
-  header.header{
-    position: fixed !important;  /* ensure positioned ancestor */
-    inset: 0 0 auto 0 !important;
-    height: var(--hdrH, 74px) !important;
+  #packages .wrap{ padding-inline: 12px !important; }
+  #packages .grid-3{ gap: 12px !important; }
+
+  #packages .grid-3 > .card{
+    flex: 0 0 clamp(260px, 92vw, 340px) !important;
   }
 
-  /* Make sure brand pieces are visible (override any prior display:none) */
-  header.header .brand-badge,
-  header.header .brand-title{
-    display: inline-flex !important;
+  @media (max-width: 380px){
+    #packages .grid-3 > .card{
+      flex-basis: calc(100vw - 24px) !important;
+    }
   }
 
-  /* Absolute center the brand link/container */
-  header.header .brand{
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    margin: 0 !important;
-    float: none !important;
-  }
-
-  /* Pin hamburger to the left */
-  .menu-btn, #menuBtn{
-    position: absolute !important;
-    left: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    margin: 0 !important;
-  }
-
-  /* Pin CTA group to the right */
-  .nav-right{
-    position: absolute !important;
-    right: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    margin: 0 !important;
-  }
-
-  /* Prevent layout shifts from nav links panel */
-  .nav .links{
-    top: var(--hdrH, 74px) !important;
-  }
-}
-</style><style id="yoshi-mobile-centerlogo-cushioned">
-/* C-002c: Absolute center + cushioned gutters so logo doesn't sit under buttons */
-@media (max-width: 900px){
-  header.header{
-    position: fixed !important;
-    inset: 0 0 auto 0 !important;
-    height: var(--hdrH, 80px) !important;
-    padding-left: 72px !important;   /* leave space for hamburger */
-    padding-right: 72px !important;  /* leave space for Book Now */
-  }
-
-  /* Pin controls left/right */
-  .menu-btn, #menuBtn{
-    position: absolute !important;
-    left: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 3 !important;
-  }
-  .nav-right{
-    position: absolute !important;
-    right: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 3 !important;
-  }
-
-  /* Absolute-center ANY plausible logo/brand element */
-  header.header .brand,
-  header.header .brand-logo-center,
-  header.header .brand-title,
-  header.header .brand-badge,
-  header.header .brand img,
-  header.header img.brand-logo-img,
-  header.header img[alt*="logo" i],
-  header.header [class*="logo"]{
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    float: none !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    max-width: calc(100vw - 160px) !important; /* keep clear of side buttons */
-    z-index: 2 !important;
-  }
-
-  /* Keep dropdown from overlapping header center area */
-  .nav .links{
-    top: var(--hdrH, 80px) !important;
-  }
+  #packages .card-cta{ flex-wrap: wrap !important; }
+  #packages .card-media,
+  #packages .card-media video,
+  #packages .card img{ width:100% !important; height:auto !important; }
 }
 </style></head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
