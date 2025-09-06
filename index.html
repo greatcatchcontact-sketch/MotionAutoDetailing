@@ -2046,6 +2046,57 @@ main{ margin-top: 0; }
     transform: translateY(-50%);
   }
 }
+</style><style id="yoshi-mobile-centerlogo-abs">
+/* C-002b: Absolute center the brand/logo on mobile, anchor controls left/right */
+@media (max-width: 900px){
+  header.header{
+    position: fixed !important;  /* ensure positioned ancestor */
+    inset: 0 0 auto 0 !important;
+    height: var(--hdrH, 74px) !important;
+  }
+
+  /* Make sure brand pieces are visible (override any prior display:none) */
+  header.header .brand-badge,
+  header.header .brand-title{
+    display: inline-flex !important;
+  }
+
+  /* Absolute center the brand link/container */
+  header.header .brand{
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    float: none !important;
+  }
+
+  /* Pin hamburger to the left */
+  .menu-btn, #menuBtn{
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+  }
+
+  /* Pin CTA group to the right */
+  .nav-right{
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+  }
+
+  /* Prevent layout shifts from nav links panel */
+  .nav .links{
+    top: var(--hdrH, 74px) !important;
+  }
+}
 </style></head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
 <div class="track"><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>Meguiar’s®</span><span>Chemical Guys®</span><span>Adam’s Polishes®</span><span>P&amp;S®</span><span>RUPES®</span><span>FLEX®</span><span>Menzerna®</span><span>Turtle Wax Pro®</span><span>Optimum Polymer®</span><span>Jescar®</span><span>Griot’s Garage®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span><span>SONAX®</span><span>CARPRO®</span><span>GYEON®</span><span>Koch‑Chemie®</span><span>3D®</span><span>XPEL®</span></div>
