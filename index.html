@@ -1974,25 +1974,55 @@ main{ margin-top: 0; }
 #packages .grid-3 > .card{
   max-width: 100% !important;
 }
-
 @media (max-width: 900px){
   #packages .wrap{ padding-inline: 12px !important; }
   #packages .grid-3{ gap: 12px !important; }
-
   #packages .grid-3 > .card{
     flex: 0 0 clamp(260px, 85vw, 340px) !important;
   }
-
   @media (max-width: 380px){
     #packages .grid-3 > .card{
       flex-basis: calc(100vw - 24px) !important;
     }
   }
-
   #packages .card-cta{ flex-wrap: wrap !important; }
   #packages .card-media,
   #packages .card-media video,
   #packages .card img{ width:100% !important; height:auto !important; }
+}
+</style><style id="yoshi-mobile-centerlogo-force">
+@media (max-width: 900px){
+  /* Restore brand/logo if hidden and center it */
+  header.header .brand,
+  header.header .brand-badge,
+  header.header .brand-title,
+  header.header img.brand-logo-img {
+    display: inline-flex !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 auto !important;
+    z-index: 2 !important;
+  }
+
+  /* Hamburger pinned left */
+  #menuBtn, .menu-btn{
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 3 !important;
+  }
+
+  /* Book Now pinned right */
+  .nav-right{
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 3 !important;
+  }
 }
 </style></head>
 <body><div aria-label="Trusted brands" id="yoshi-hero-marquee">
