@@ -1969,59 +1969,59 @@ main{ margin-top: 0; }
   }
 }
 </style>
-<style id="yoshi-packages-responsive-cards-85vw">
-/* Responsive package cards with 85vw preferred width */
-#packages .grid-3 > .card{
-  max-width: 100% !important;
-}
+<style id="yoshi-mobile-centerlogo-grid">
+/* C-002e — Grid header: left(hamburger) | center(logo) | right(CTA) */
 @media (max-width: 900px){
-  #packages .wrap{ padding-inline: 12px !important; }
-  #packages .grid-3{ gap: 12px !important; }
-  #packages .grid-3 > .card{
-    flex: 0 0 clamp(260px, 85vw, 340px) !important;
+  header.header{
+    display: grid !important;
+    grid-template-columns: 56px 1fr 56px !important;
+    grid-template-rows: 1fr !important;
+    align-items: center !important;
+    justify-items: center !important;
+    padding: 0 8px !important;
+    height: var(--hdrH, 80px) !important;
   }
-  @media (max-width: 380px){
-    #packages .grid-3 > .card{
-      flex-basis: calc(100vw - 24px) !important;
-    }
-  }
-  #packages .card-cta{ flex-wrap: wrap !important; }
-  #packages .card-media,
-  #packages .card-media video,
-  #packages .card img{ width:100% !important; height:auto !important; }
-}
-</style><style id="yoshi-mobile-centerlogo-force">
-@media (max-width: 900px){
-  /* Restore brand/logo if hidden and center it */
+
+  /* Reset any absolute/transform from prior candidates */
   header.header .brand,
   header.header .brand-badge,
   header.header .brand-title,
-  header.header img.brand-logo-img {
-    display: inline-flex !important;
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+  header.header img.brand-logo-img,
+  header.header [class*="logo"]{
+    position: static !important;
+    transform: none !important;
     margin: 0 auto !important;
-    z-index: 2 !important;
+    display: inline-flex !important;
+    justify-self: center !important;
+    align-items: center !important;
+    max-width: 100% !important;
   }
 
-  /* Hamburger pinned left */
+  /* Place items into columns */
   #menuBtn, .menu-btn{
-    position: absolute !important;
-    left: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 3 !important;
+    position: static !important;
+    grid-column: 1 !important;
+    justify-self: start !important;
+  }
+  /* Center brand/logo column */
+  header.header .brand,
+  header.header img.brand-logo-img,
+  header.header [class*="logo"]{
+    grid-column: 2 !important;
+  }
+  /* Right-side CTA block */
+  .nav-right{
+    position: static !important;
+    grid-column: 3 !important;
+    justify-self: end !important;
   }
 
-  /* Book Now pinned right */
-  .nav-right{
-    position: absolute !important;
+  /* Keep the dropdown below header */
+  .nav .links{
+    position: fixed !important;
+    top: var(--hdrH, 80px) !important;
     right: 12px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 3 !important;
+    left: auto !important;
   }
 }
 </style></head>
